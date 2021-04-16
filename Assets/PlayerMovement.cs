@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("VelocityY", rb.velocity.y);
         if (!airBorn)
         {
             Run();
@@ -27,6 +28,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 Jump();
             }
+
+            anim.SetBool("Airborn", false);
+        }
+        else
+        {
+            anim.SetBool("Airborn", true);
         }
     }
 
