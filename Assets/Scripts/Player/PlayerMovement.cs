@@ -54,9 +54,20 @@ public class PlayerMovement : MonoBehaviour
             jumpPressedRememberTimer -= Time.deltaTime;
             groundedRememberTimer -= Time.deltaTime;
 
-            if (anim != null) anim.SetBool("Airborn", !isGrounded);
+ 
         }
-     
+
+        if (playerscript.isDead)
+        {
+            rb.gravityScale = 4;
+        }
+        if(IsGrounded() && playerscript.isDead)
+        {
+            rb.drag = 5;
+        }
+        if (anim != null) anim.SetBool("Airborn", !IsGrounded());
+
+
     }
 
     private void Run()
