@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2736093188366215755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2736093188366215749}
+  - component: {fileID: 2736093188366215748}
+  - component: {fileID: 2736093188366215750}
+  - component: {fileID: 2736093188366215751}
+  m_Layer: 0
+  m_Name: GameHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2736093188366215749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2736093188366215755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2736093188366215748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2736093188366215755}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e3a39be4259624180bced6858d65eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 750
+  height: 5
+  heightMinMax: {x: 3, y: 6}
+  heigthTresholdMinMax: {x: -1, y: 2}
+  dirt: {fileID: 2619623353262026146, guid: 786cbda2d423ef34dbcd78104f987a7c, type: 3}
+  grass: {fileID: 2603970266864386329, guid: 2f290d9aa890bd94b81827e12f18b4a5, type: 3}
+  partLength: {x: 15, y: 20}
+  holeSizeMinMax: {x: 3, y: 5}
+--- !u!114 &2736093188366215750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2736093188366215755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe4fcec9f26de14e8d3756954cc498b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holeSizeMinMax: {x: 8, y: 12}
+  nbOfBuilding: 20
+  buildings:
+  - {fileID: 1837459170411648657, guid: 734bd06a394dcb142af7fb28801241e5, type: 3}
+  - {fileID: 3069878731971572959, guid: 8fe18a6fd58f8174babe586b4fb09b0d, type: 3}
+  - {fileID: 2053682855354536635, guid: ce73ef926282aff439ae0cc7ee2a2138, type: 3}
+  - {fileID: 2354876676788601237, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
+  obstacles:
+  - {fileID: 8862388989759901726, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
+  - {fileID: 5445872687751207654, guid: ca8756b676387b240b7451916ac77eea, type: 3}
+  minimumDistanceBetweenObstacles: 20
+--- !u!114 &2736093188366215751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2736093188366215755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1823cbcc1d47ad41b9e5c3b2e8c0556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

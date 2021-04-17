@@ -98,9 +98,10 @@ GameObject:
   - component: {fileID: 4616563077077594854}
   - component: {fileID: 4616563077077594855}
   - component: {fileID: 4616563077077594859}
+  - component: {fileID: 5065796551199412019}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +162,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2619831015951649506, guid: 3afc23a95762dec4b8835ee9c307db53, type: 3}
-  m_Color: {r: 0.7496887, g: 1, b: 0.6745283, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -183,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d023a092da04a4a8b3dc286a55fa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInBuilding: 0
 --- !u!114 &4616563077077594856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   jumpForce: 20
-  airBorn: 1
+  isTackling: 0
+  playerscript: {fileID: 0}
 --- !u!61 &4616563077077594854
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -264,3 +267,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5065796551199412019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616563077077594858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba37eebceb4f204e90673db40954829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

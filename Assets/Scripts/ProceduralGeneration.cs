@@ -4,61 +4,89 @@ using UnityEngine;
 
 public class ProceduralGeneration : MonoBehaviour
 {
-    [SerializeField] int width, height;
-    [SerializeField] Vector2Int heightMinMax;
-    [SerializeField] Vector2Int heigthTresholdMinMax;
+    [SerializeField] Vector2 holeSizeMinMax;
 
-    [SerializeField] GameObject dirt, grass;
+    [SerializeField] int nbOfBuilding;
+    [SerializeField] Building[] buildings;
 
-    [SerializeField] Vector2Int partLength;
-    int nextPart;
+    [SerializeField] GameObject[] obstacles;
+    [SerializeField] float minimumDistanceBetweenObstacles;
 
-    [SerializeField] Vector2Int holeSizeMinMax;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        Generate();        
+        Generate();
     }
 
-    void Generate()
+    private void Generate()
     {
-        nextPart = Random.Range(partLength.x, partLength.y);
+        // making the hierarchy clear by creating a parent for every buildings
+        Transform buildingsParent = new GameObject("Buildings").transform;
+        buildingsParent.SetParent(transform);
 
-        for(int x = 0; x < width; x++)
+        // making the hierarchy clear by creating a parent for every obstacles
+        Transform obstaclesParent = new GameObject("Obstacles").transform;
+        obstaclesParent.SetParent(transform);
+
+
+
+        // Creating a float to store the x value of the position of the next building
+        float buildingX = 0;
+        for(int i = 0; i < nbOfBuilding; i++)
         {
-            if(x == nextPart)
-            {
-                int random = Random.Range(0, 2);
-                Debug.Log(random);
-                switch (random)
-                {
-                    case 0:
-                        height += Random.Range(heigthTresholdMinMax.x, heigthTresholdMinMax.y);
-                        if (height > heightMinMax.y) height = heightMinMax.y;
-                        if (height < heightMinMax.x) height = heightMinMax.x;
-                        break;
-                    case 1:
-                        int holeSize = Random.Range(holeSizeMinMax.x, holeSizeMinMax.y);
-                        x += holeSize;
-                        nextPart += holeSize;
-                        break;
-                }
-                nextPart += Random.Range(partLength.x, partLength.y);
-            }
+            // Spawning building
+            Building building = Instantiate(buildings[Random.Range(0, buildings.Length)], new Vector2(buildingX, 0), Quaternion.identity, buildingsParent); ;
+            building.name = "Building " + i.ToString();
 
-            for(int y = 0; y < height; y++)
-            {
-                if (y + 1 == height) SpawnTile(grass, x, y);
-                else SpawnTile(dirt, x, y);
-            }
+            // Pushing next building spawn position
+            buildingX += building.width;
+
+            SpawnObstacles(new Vector2(buildingX - building.width + 5, buildingX - 5), building.height, i, obstaclesParent);
+
+            // Decide if we want a hole
+                // If yes push the next building spawn position even more
+            if (Random.Range(0, 2) == 0) // temp
+                buildingX += Random.Range(holeSizeMinMax.x, holeSizeMinMax.y);
         }
     }
 
-    void SpawnTile(GameObject tile, int x, int y)
+    private void SpawnObstacles(Vector2 xMinMax, float y, int buildingNumber, Transform parent)
     {
-        GameObject obj = Instantiate(tile, new Vector2(x, y), Quaternion.identity);
-        obj.name = tile.name + " (" + x.ToString() + ", " + y.ToString() + ")";
-        obj.transform.SetParent(transform);
+        if(Random.Range(0, 3) == 0)
+        {
+            // don't spawn for this building
+            return;
+        }
+        else
+        {
+            int random = Random.Range(0, 2) + 1;
+
+            List<Transform> currentObstacles = new List<Transform>();
+            // Spawn obstacles
+            for (int i = 0; i < random; i++)
+            {
+                Vector2 spawnPos = new Vector2(Random.Range(xMinMax.x, xMinMax.y), y);
+                while (true) 
+                {
+                    bool positionFound = true;
+                    foreach(Transform temp in currentObstacles)
+                    {
+                        if(Mathf.Abs(spawnPos.x - temp.position.x) < minimumDistanceBetweenObstacles)
+                        {
+                            positionFound = false;
+                            if (spawnPos.x > temp.position.x) spawnPos.x += 0.5f;
+                            else spawnPos.x -= 0.5f;
+                        }
+                    }
+
+                    if (positionFound) break;
+                }
+                if(spawnPos.x < xMinMax.x || spawnPos.x > xMinMax.y) { continue;}
+
+                GameObject obstacle = Instantiate(obstacles[Random.Range(0, obstacles.Length)], spawnPos, Quaternion.identity, parent);
+                obstacle.name = "Obstacle " + i + " | Building " + buildingNumber;
+
+                currentObstacles.Add(obstacle.transform);
+            }
+        }
     }
 }
