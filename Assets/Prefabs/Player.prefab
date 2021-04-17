@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2674892508923946877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.89, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.97, y: 0.33, z: 0}
+  m_LocalScale: {x: 0.675, y: 0.34453127, z: 1}
   m_Children: []
   m_Father: {fileID: 4616563077077594857}
   m_RootOrder: 1
@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 4616563077077594855}
   - component: {fileID: 4616563077077594859}
   - component: {fileID: 5065796551199412019}
+  - component: {fileID: 2023279744650037744}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -272,6 +273,7 @@ MonoBehaviour:
   speed: 15
   jumpForce: 20
   isTackling: 0
+  diveForce: 20
   playerscript: {fileID: 0}
 --- !u!61 &4616563077077594854
 BoxCollider2D:
@@ -286,7 +288,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.25982463}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -297,7 +299,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.366134, y: 7.7949905}
+  m_Size: {x: 3.366134, y: 7.275341}
   m_EdgeRadius: 0
 --- !u!50 &4616563077077594855
 Rigidbody2D:
@@ -318,7 +320,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 7b20b86150e5497459b575bdb7115129, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &4616563077077594859
 Animator:
@@ -340,6 +342,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5065796551199412019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616563077077594858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba37eebceb4f204e90673db40954829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2023279744650037744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
