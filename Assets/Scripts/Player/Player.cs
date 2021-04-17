@@ -18,15 +18,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y < -1)
+        if (transform.position.y < -1 || rb.velocity == Vector2.zero)
         {
             Die();
         }
     }
 
+
     private void Die()
     {
         // temp
         SceneManager.LoadScene(0);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if(collision.GetContact(0).point.x >  ) { }
     }
 }
