@@ -7,6 +7,7 @@ public class Building : MonoBehaviour
     public GameObject obj;
     public float width;
     public float height;
+    public bool hasWindows;
 
     [SerializeField] Floor[] floors;
 
@@ -56,7 +57,7 @@ public class Building : MonoBehaviour
         {
             if (i == trigger.floorIndex) continue;
             Floor floor = floors[i];
-            Debug.Log(floor.obj.name + " | " + (floor.bg == null) + i.ToString() );
+            //Debug.Log(floor.obj.name + " | " + (floor.bg == null) + i.ToString() );
 
             if(floor.obj.GetComponentInChildren<Renderer>().material.color.a < 1)
             {
@@ -65,7 +66,7 @@ public class Building : MonoBehaviour
             }
             if (floor.bg != null)
             {
-                Debug.Log(floor.bg.name);
+                //Debug.Log(floor.bg.name);
                 Renderer[] bgRenderers = floor.bg.GetComponentsInChildren<Renderer>();
                 foreach (Renderer renderer in bgRenderers)
                 {
@@ -91,6 +92,8 @@ public class Building : MonoBehaviour
          //   chosenFloor.obj.GetComponent<Collider2D>().enabled = true;
         }
     }
+
+    public static float HeightDifference(Building a, Building b) { return Mathf.Abs(a.height - b.height); }
 }
 [System.Serializable] public class Floor
 {

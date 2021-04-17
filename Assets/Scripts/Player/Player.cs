@@ -66,6 +66,17 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<FloorTrigger>() != null) { isInBuilding = !isInBuilding; }
+        if(collision.GetComponent<FloorTrigger>() != null) 
+        {
+            ContactPoint2D[] contacts = new ContactPoint2D[1];
+            collider.GetContacts(contacts);
+            foreach(ContactPoint2D contact in contacts)
+            {
+                if(contact.collider != null)
+                Debug.Log("collider " + contact.collider.name);
+                Debug.Log("others " + contact.otherCollider.name);
+            }
+            isInBuilding = !isInBuilding; Debug.Log("in building = " + isInBuilding); 
+        }
     }
 }

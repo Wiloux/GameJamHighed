@@ -802,6 +802,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2736093188366215750, guid: c691f470d4733c148b3cc9f0c118b418, type: 3}
+      propertyPath: buildings.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736093188366215750, guid: c691f470d4733c148b3cc9f0c118b418, type: 3}
+      propertyPath: buildings.Array.data[4]
+      value: 
+      objectReference: {fileID: 6808590961278610421, guid: b9ffae9892e7c2b4b95793f02bd7ee79, type: 3}
+    - target: {fileID: 2736093188366215750, guid: c691f470d4733c148b3cc9f0c118b418, type: 3}
+      propertyPath: maxDifferenceBetweenBuildings
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2736093188366215755, guid: c691f470d4733c148b3cc9f0c118b418, type: 3}
       propertyPath: m_Name
       value: GameHandler
@@ -815,6 +827,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2674892508923946877, guid: 0211404bc49c91f49ae442050f4cc06b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4616563077008788902, guid: 0211404bc49c91f49ae442050f4cc06b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.8

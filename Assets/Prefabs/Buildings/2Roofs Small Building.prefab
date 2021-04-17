@@ -2375,6 +2375,7 @@ MonoBehaviour:
   obj: {fileID: 0}
   width: 43.3
   height: 52
+  hasWindows: 1
   floors:
   - obj: {fileID: 4951586533150729986}
     bg: {fileID: 1365941369755306682}

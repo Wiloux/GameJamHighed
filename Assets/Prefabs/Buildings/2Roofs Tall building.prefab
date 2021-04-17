@@ -2021,6 +2021,7 @@ MonoBehaviour:
   obj: {fileID: 0}
   width: 30.5
   height: 57
+  hasWindows: 1
   floors:
   - obj: {fileID: 8789598692844507721}
     bg: {fileID: 4631045762693021488}

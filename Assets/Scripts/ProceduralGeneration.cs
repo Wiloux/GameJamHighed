@@ -7,6 +7,13 @@ public class ProceduralGeneration : MonoBehaviour
     [Header("Buildings prefabs")]
     [Space(5)]
     [SerializeField] Building[] buildings;
+    float spawnPosition = 0;
+    int currentBuildingNumber = 1;
+    Transform buildingsParent;
+    List<Building> createdBuildings = new List<Building>();
+
+    [SerializeField] float distanceToSpawnNextBuilding = 25f;
+    [SerializeField] float maxDifferenceBetweenBuildings;
     
     [Space(10)]
     [SerializeField] Vector2 holeSizeMinMax;
@@ -23,10 +30,6 @@ public class ProceduralGeneration : MonoBehaviour
     [SerializeField] EnemyScript enemyPrefab;
     [SerializeField] float distanceBetweenEdgeAndEnemy;
 
-    float spawnPosition = 0;
-    int currentBuildingNumber = 1;
-
-    Transform buildingsParent;
     Transform obstaclesParent;
     Transform enemiesParent;
 
@@ -45,34 +48,60 @@ public class ProceduralGeneration : MonoBehaviour
         enemiesParent.SetParent(transform);
 
         SpawnBuilding();
-
-        //Generate();
     }
 
     private void Update()
     {
-        if(player.transform.position.x + 30 >= spawnPosition)
+        if(player.transform.position.x + distanceToSpawnNextBuilding >= spawnPosition)
         {
-            if (player.isInBuilding) { SpawnBuilding(player.transform.position.y + 10f); }
+            if (player.isInBuilding) { SpawnBuilding(player.transform.position.y); Debug.Log("adapted spawn"); }
             else SpawnBuilding();
         }
     }
 
     private void SpawnBuilding(float? maxHeight = null)
     {
+        Debug.Log("spawn");
         Building buildingPrefab = buildings[Random.Range(0, buildings.Length)];
-        if (maxHeight != null)
+
+        if(currentBuildingNumber != 1)
         {
-            while(buildingPrefab.height > maxHeight)
+            if (maxHeight != null)
             {
-                buildingPrefab = buildings[Random.Range(0, buildings.Length)];
+                for(int i = 0; i < buildings.Length; i++)
+                {
+                    bool isBelowMaxHeight = buildings[i].height < buildingPrefab.height;
+                    bool isCloserFromMaxHeight = Mathf.Abs(buildings[i].height - (float)maxHeight) < Mathf.Abs(buildingPrefab.height - (float)maxHeight);
+
+                    if(buildingPrefab.height > maxHeight && isBelowMaxHeight)
+                    {
+                        buildingPrefab = buildings[i];
+                    }
+                    else if (isBelowMaxHeight && isCloserFromMaxHeight)
+                    {
+                        buildingPrefab = buildings[i];
+                    }
+                }
+                Debug.Log("prefab :" + buildingPrefab.name);
+            }
+            else
+            {
+                if (!buildingPrefab.hasWindows || Building.HeightDifference(buildingPrefab, createdBuildings[currentBuildingNumber-2]) > maxDifferenceBetweenBuildings)
+                {
+                    while (true)
+                    {
+                        buildingPrefab = buildings[Random.Range(0, buildings.Length)]; 
+                        if(Building.HeightDifference(buildingPrefab, createdBuildings[currentBuildingNumber - 2]) <= maxDifferenceBetweenBuildings || buildingPrefab.hasWindows) { break; }
+                    }
+                }
             }
         }
+
         Building building = Instantiate(buildingPrefab, new Vector2(spawnPosition, 0), Quaternion.identity, buildingsParent);
         building.name = "Building " + currentBuildingNumber.ToString() + "( " + buildingPrefab.name + " )";
 
         // Decide if we want obstacles on this building
-        if (Random.Range(0,3) != 0) 
+        if (Random.Range(0,3) != 0 && currentBuildingNumber != 1) 
         {
             // Spawn some obstacles on the building
             SpawnObstacles(new Vector2(spawnPosition + minDistanceBetweenEdgesAndObstacles, spawnPosition + building.width - minDistanceBetweenEdgesAndObstacles), building.height, currentBuildingNumber, obstaclesParent);
@@ -95,6 +124,7 @@ public class ProceduralGeneration : MonoBehaviour
         // Pushing next building spawn position
         spawnPosition += building.width;
         currentBuildingNumber++;
+        createdBuildings.Add(building);
     }
     private void SpawnObstacles(Vector2 xMinMax, float y, int buildingNumber, Transform parent)
     {

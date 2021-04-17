@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: 4616563077077594855}
   - component: {fileID: 4616563077077594859}
   - component: {fileID: 5065796551199412019}
-  - component: {fileID: 2023279744650037744}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -257,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d023a092da04a4a8b3dc286a55fa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   isInBuilding: 0
 --- !u!114 &4616563077077594856
 MonoBehaviour:
@@ -271,9 +271,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  jumpForce: 20
+  jumpForce: 25
   isTackling: 0
   diveForce: 20
+  anim: {fileID: 0}
   playerscript: {fileID: 0}
 --- !u!61 &4616563077077594854
 BoxCollider2D:
@@ -342,18 +343,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5065796551199412019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4616563077077594858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba37eebceb4f204e90673db40954829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2023279744650037744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
