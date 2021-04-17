@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down, 1f);
         Debug.DrawRay(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down, Color.red, 0.1f);

@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !controller.isTackling && controller.IsGrounded())
         {
             controller.isTackling = true;
             animator.SetTrigger("Attack");
@@ -37,10 +37,15 @@ public class Player : MonoBehaviour
     }
 
 
+    public void StopAttack()
+    {
+        controller.isTackling = false;
+    }
+
     public void Die()
     {
         // temp
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
