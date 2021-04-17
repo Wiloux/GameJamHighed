@@ -53,6 +53,8 @@ public class Building : MonoBehaviour
         GameHandler gameHandler = GameHandler.instance;
         Floor chosenFloor = floors[trigger.floorIndex];
 
+
+        StopAllCoroutines();
         for(int i = 0; i < floors.Length; i++)
         {
             if (i == trigger.floorIndex) continue;

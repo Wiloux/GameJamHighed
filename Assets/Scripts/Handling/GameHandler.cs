@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class GameHandler : MonoBehaviour
 {
@@ -63,3 +66,22 @@ public class GameHandler : MonoBehaviour
         }
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(GameHandler))] public class GameHandlerInspector : Editor
+{
+    int newHighscore;
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        GUILayout.Space(10);
+        if(GUILayout.Button("Reset Highscore")) { PlayerPrefs.SetInt("Highscore", 0); }
+        GUILayout.Space(2);
+        GUILayout.BeginHorizontal();
+        if(GUILayout.Button("Set score")) { PlayerPrefs.SetInt("Highscore", newHighscore); }
+        newHighscore = EditorGUILayout.IntField(newHighscore);
+        GUILayout.EndHorizontal();
+    }
+}
+#endif
