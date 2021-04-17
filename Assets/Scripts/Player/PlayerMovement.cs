@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float jumpForce;
     public bool isTackling;
+    public float diveForce;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -32,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (anim != null) anim.SetFloat("VelocityY", rb.velocity.y);
+
+        if (Input.GetKey(KeyCode.C) && !IsGrounded()) { rb.gravityScale = diveForce; anim.SetBool("Diving", true); } else { rb.gravityScale = 4; anim.SetBool("Diving", false); }
 
         Run();
 
