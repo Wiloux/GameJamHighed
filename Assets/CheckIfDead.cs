@@ -5,11 +5,20 @@ using UnityEngine;
 public class CheckIfDead : MonoBehaviour
 {
     public Player player;
-    private void OnTriggerEnter2D(Collider2D collision)
+    [SerializeField] float range;
+
+    private void Update()
     {
-        if(collision.transform.tag == "Ground")
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range);
+        foreach (Collider2D collider in colliders)
         {
-            player.Die();
+            if (collider.CompareTag("Ground")) { player.Die(); break; }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

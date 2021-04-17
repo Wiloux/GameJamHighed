@@ -68,12 +68,13 @@ public class Player : MonoBehaviour
     {
         if(collision.GetComponent<FloorTrigger>() != null) 
         {
-            ContactPoint2D[] contacts = new ContactPoint2D[1];
+            ContactPoint2D[] contacts = new ContactPoint2D[10];
             collider.GetContacts(contacts);
             foreach(ContactPoint2D contact in contacts)
             {
                 if(contact.collider != null)
                 Debug.Log("collider " + contact.collider.name);
+                if(contact.otherCollider != null)
                 Debug.Log("others " + contact.otherCollider.name);
             }
             isInBuilding = !isInBuilding; Debug.Log("in building = " + isInBuilding); 
