@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.GetContact(0).point.x > collider.bounds.center.x) { Die(); }
+        //if (collision.GetContact(0).point.x > collider.bounds.center.x) { Die(); }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

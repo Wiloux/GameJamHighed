@@ -7,6 +7,30 @@ public class GameHandler : MonoBehaviour
     public static GameHandler instance;
     private void Awake(){ instance = this; }
 
+    public bool paused;
+
+    float timer = 0;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+
+        if (!paused)
+        {
+            timer += Time.deltaTime;
+        }
+    }
+
+    public void SetPause(bool pause)
+    {
+        paused = pause;
+        Time.timeScale = paused ? 0: 1;
+    }
+    private void TogglePause() { SetPause(!paused); }
+
     public IEnumerator Fade(GameObject toFade, float fadeDuration, string mode = "in")
     {
         Renderer[] renderers = toFade.GetComponentsInChildren<Renderer>();
