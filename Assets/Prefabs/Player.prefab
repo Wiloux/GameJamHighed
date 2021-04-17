@@ -234,6 +234,7 @@ MonoBehaviour:
   isDead: 0
   isInBuilding: 0
   score: 0
+  beatingHighscore: 0
   breakingWall_ScoreGain: 5
   smashingEnemy_ScoreGain: 10
   perfectTimingJump_ScoreGain: 7
@@ -258,6 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998b24e96722eff4d9386a98e409a27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedMinMax: {x: 10, y: 20}
+  speedGain: 1.5
   speed: 15
   jumpForce: 25
   isTackling: 0
