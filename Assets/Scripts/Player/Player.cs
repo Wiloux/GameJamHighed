@@ -79,6 +79,8 @@ public class Player : MonoBehaviour
         rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);
         isDead = true;
         controller.anim.SetTrigger("Dead");
+
+        if(score > PlayerPrefs.GetInt("Highscore", 0)) { PlayerPrefs.SetInt("Hisghscore", (int)score); }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
