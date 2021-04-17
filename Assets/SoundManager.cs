@@ -17,7 +17,7 @@ public class SoundManager : MonoBehaviour
     }
     public void PlaySoundEffect(AudioClip clip, bool voiceline = true)
     {
- sfxsd.pitch = Random.Range(0.9f, 1.1f);
+            sfxsd.pitch = Random.Range(0.9f, 1.1f);
             sfxsd.PlayOneShot(clip);
 
         

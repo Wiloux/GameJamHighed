@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public Player playerscript;
 
     public List<AudioClip> JumpEffects = new List<AudioClip>();
+    public AudioClip diveEffect;
 
     private const float JUMP_PRESS_REMEMBER_DURATION = 0.3f;
     private float jumpPressedRememberTimer;
@@ -40,11 +41,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!playerscript.isDead)
         {
+            anim.speed = speed / speedMinMax.y;
             if (speed < speedMinMax.y) speed += speedGain * Time.deltaTime;
             if (speed > speedMinMax.y) speed = speedMinMax.y;
 
             if (anim != null) anim.SetFloat("VelocityY", rb.velocity.y);
 
+         //   if (Input.GetKeyDown(KeyCode.C)) { SoundManager.Instance.PlaySoundEffect(diveEffect); }
             if (Input.GetKey(KeyCode.C) && !IsGrounded()) { rb.gravityScale = diveForce; anim.SetBool("Diving", true); } else { rb.gravityScale = 4; anim.SetBool("Diving", false); }
 
             Run();

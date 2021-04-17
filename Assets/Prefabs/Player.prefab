@@ -272,6 +272,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 640ccbbd2ed3fc849bcb6ed6c80767d6, type: 3}
   - {fileID: 8300000, guid: c959975fee15df140ad3551ac6f424aa, type: 3}
   - {fileID: 8300000, guid: b7979dc2cc33983499e4478c8f59d7ca, type: 3}
+  diveEffect: {fileID: 8300000, guid: a324eaeb4c8c68b4ea375104886f2b54, type: 3}
 --- !u!61 &4616563077077594854
 BoxCollider2D:
   m_ObjectHideFlags: 0

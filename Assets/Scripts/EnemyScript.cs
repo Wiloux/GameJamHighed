@@ -9,6 +9,7 @@ public class EnemyScript : MonoBehaviour
     public Animator anim;
     private Rigidbody2D rb;
     public bool isFalling;
+    public AudioClip punchEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     rb.AddForce(new Vector2(Random.Range(50,65),40), ForceMode2D.Impulse);
                     PlayerHelper.instance.AddSmashingEnemyScore();
+                    SoundManager.Instance.PlaySoundEffect(punchEffect);
                     Fall();
                 }
                 else
