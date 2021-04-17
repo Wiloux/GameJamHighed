@@ -86,7 +86,7 @@ public class ProceduralGeneration : MonoBehaviour
         building.name = "Building " + currentBuildingNumber.ToString();
 
 
-        SpawnObstacles(new Vector2(nextBuildingPosition + 5, nextBuildingPosition + nextBuildingPosition - 5), building.height, currentBuildingNumber, obstaclesParent);
+        SpawnObstacles(new Vector2(nextBuildingPosition + 5, nextBuildingPosition + building.width - 5), building.height, currentBuildingNumber, obstaclesParent);
 
         // Decide if we want a hole
         // If yes push the next building spawn position even more
