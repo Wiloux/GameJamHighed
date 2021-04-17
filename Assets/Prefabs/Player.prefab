@@ -233,6 +233,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   isInBuilding: 0
+  score: 0
+  breakingWall_ScoreGain: 5
+  smashingEnemy_ScoreGain: 10
+  perfectTimingJump_ScoreGain: 7
+  scoreGainBySecond: 1
+  PunchEffects:
+  - {fileID: 8300000, guid: 78ae1a344c0aa93458397d2e77106fe5, type: 3}
+  - {fileID: 8300000, guid: fc591b244dcac164bb0d939b8ad5f070, type: 3}
+  - {fileID: 8300000, guid: 993fd32e60e0f0247bbbd2785d35834b, type: 3}
+  - {fileID: 8300000, guid: 52ba392755076c14283223a84164fe02, type: 3}
+  DeathEffects:
+  - {fileID: 8300000, guid: 544e3d1b728040d47aec1d6b98c87a39, type: 3}
+  - {fileID: 8300000, guid: 7969b7e17b8e7df459011a99a71cb960, type: 3}
 --- !u!114 &4616563077077594856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +264,11 @@ MonoBehaviour:
   diveForce: 20
   anim: {fileID: 0}
   playerscript: {fileID: 0}
+  JumpEffects:
+  - {fileID: 8300000, guid: 1dca22efd9e5a5640ae6cad94c74854e, type: 3}
+  - {fileID: 8300000, guid: 640ccbbd2ed3fc849bcb6ed6c80767d6, type: 3}
+  - {fileID: 8300000, guid: c959975fee15df140ad3551ac6f424aa, type: 3}
+  - {fileID: 8300000, guid: b7979dc2cc33983499e4478c8f59d7ca, type: 3}
 --- !u!61 &4616563077077594854
 BoxCollider2D:
   m_ObjectHideFlags: 0
