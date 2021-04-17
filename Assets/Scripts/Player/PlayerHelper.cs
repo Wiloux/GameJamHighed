@@ -13,6 +13,7 @@ public class PlayerHelper : MonoBehaviour
         player = GetComponent<Player>();
     }
 
+    public bool IsDead => player.isDead;
     public float Score => player.score;
 
     public void AddPerfectJumpScore() { player.score += player.perfectTimingJump_ScoreGain; }

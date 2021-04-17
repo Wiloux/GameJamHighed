@@ -6,7 +6,7 @@ using TMPro;
 
 public class UIHandler : MonoBehaviour
 {
-    public enum Mode { playing, pause, options};
+    public enum Mode { playing, pause, options, gameOver};
     private Mode mode;
 
     [SerializeField] TMP_Text scoreDisplayer;
@@ -14,6 +14,11 @@ public class UIHandler : MonoBehaviour
     [SerializeField] GameObject gameUI;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject optionsMenu;
+    [Space(5)]
+    [SerializeField] GameObject gameOverMenu;
+    [SerializeField] TMP_Text gameOverScoreDisplayer;
+    [SerializeField] TMP_Text gameOverHighscoreDisplayer;
+
 
     GameHandler gameHandler;
     PlayerHelper playerHelper;
@@ -28,11 +33,21 @@ public class UIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreDisplayer.text = "Score: " + ((int)playerHelper.Score).ToString();
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!playerHelper.IsDead)
         {
-            Escape();
+            scoreDisplayer.text = "Score: " + ((int)playerHelper.Score).ToString();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Escape();
+            }
+        }
+        else
+        {
+            mode = Mode.gameOver;
+            gameOverMenu.SetActive(true);
+            gameOverScoreDisplayer.text = ((int)playerHelper.Score).ToString();
+            gameOverHighscoreDisplayer.text = PlayerPrefs.GetInt("Highscore", (int)playerHelper.Score).ToString();
         }
     }
 

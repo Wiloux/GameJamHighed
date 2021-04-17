@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
     public List<AudioClip> PunchEffects = new List<AudioClip>();
     public List<AudioClip> DeathEffects = new List<AudioClip>();
+    public List<AudioClip> NewHighscoreEffects = new List<AudioClip>();
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
             }
 
             score += Time.deltaTime * scoreGainBySecond;
-            if(!beatingHighscore && score > PlayerPrefs.GetInt("Highscore", 0)) { beatingHighscore = true; /*voiceline*/ }
+            if(!beatingHighscore && score > PlayerPrefs.GetInt("Highscore", 0)) { beatingHighscore = true; SoundManager.Instance.PlaySoundEffect(NewHighscoreEffects[Random.Range(0, NewHighscoreEffects.Count)]); }
         }
         else
         {
