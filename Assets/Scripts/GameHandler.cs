@@ -27,7 +27,6 @@ public class GameHandler : MonoBehaviour
                 float diff = (1f / fadeDuration) * Time.deltaTime;
 
                 colors[i].a += mode == "in" ? diff : -diff;
-                Debug.Log(colors[i].a);
                 renderers[i].material.color = colors[i];
             }
 

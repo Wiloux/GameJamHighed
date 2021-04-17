@@ -19,7 +19,6 @@ public class BrickWall : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             triggered = true;
-            Time.timeScale = 0.5f;
             triggerIndicator.SetActive(true);
         }
     }
@@ -28,7 +27,6 @@ public class BrickWall : MonoBehaviour
     {
         if(triggered && Input.GetKeyDown(input))
         {
-            Time.timeScale = 1f;
             Destroy(gameObject);
         }
     }
