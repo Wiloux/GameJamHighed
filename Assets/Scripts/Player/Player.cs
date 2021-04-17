@@ -30,10 +30,10 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Attack");
         }
 
-        //if (transform.position.y < -1 || rb.velocity == Vector2.zero)
-        //{
-        //    Die();
-        //}
+        if (transform.position.y < -1 || rb.velocity == Vector2.zero)
+        {
+            Die();
+        }
     }
 
 

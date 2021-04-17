@@ -11,8 +11,11 @@ public class ProceduralGeneration : MonoBehaviour
 
     [SerializeField] GameObject[] obstacles;
     [SerializeField] float minimumDistanceBetweenObstacles;
+    [SerializeField] float minDistanceBetweenEdgesAndObstacles = 5;
 
-    float nextBuildingPosition = 0;
+    [SerializeField] EnemyScript enemyPrefab;
+
+    float spawnPosition = 0;
     int currentBuildingNumber = 1;
 
     Transform buildingsParent;
@@ -39,38 +42,12 @@ public class ProceduralGeneration : MonoBehaviour
 
     private void Update()
     {
-        if(player.transform.position.x + 30 >= nextBuildingPosition)
+        if(player.transform.position.x + 30 >= spawnPosition)
         {
             if (player.isInBuilding) { SpawnBuilding(player.transform.position.y + 5f); }
             else SpawnBuilding();
         }
     }
-
-    private void Generate()
-    {
-
-
-
-        // Creating a float to store the x value of the position of the next building
-        float buildingX = 0;
-        for(int i = 0; i < nbOfBuilding; i++)
-        {
-            // Spawning building
-            Building building = Instantiate(buildings[Random.Range(0, buildings.Length)], new Vector2(buildingX, 0), Quaternion.identity, buildingsParent); ;
-            building.name = "Building " + i.ToString();
-
-            // Pushing next building spawn position
-            buildingX += building.width;
-
-            SpawnObstacles(new Vector2(buildingX - building.width + 5, buildingX - 5), building.height, i, obstaclesParent);
-
-            // Decide if we want a hole
-                // If yes push the next building spawn position even more
-            if (Random.Range(0, 2) == 0) // temp
-                buildingX += Random.Range(holeSizeMinMax.x, holeSizeMinMax.y);
-        }
-    }
-
 
     private void SpawnBuilding(float? maxHeight = null)
     {
@@ -82,19 +59,29 @@ public class ProceduralGeneration : MonoBehaviour
                 buildingPrefab = buildings[Random.Range(0, buildings.Length)];
             }
         }
-        Building building = Instantiate(buildingPrefab, new Vector2(nextBuildingPosition, 0), Quaternion.identity, buildingsParent);
-        building.name = "Building " + currentBuildingNumber.ToString();
+        Building building = Instantiate(buildingPrefab, new Vector2(spawnPosition, 0), Quaternion.identity, buildingsParent);
+        building.name = "Building " + currentBuildingNumber.ToString() + "( " + buildingPrefab.name + " )";
 
+        // Decide if we want obstacles on this building
+        if (Random.Range(0,3) != 0) 
+        {
+            // Spawn some obstacles on the building
+            SpawnObstacles(new Vector2(spawnPosition + minDistanceBetweenEdgesAndObstacles, spawnPosition + building.width - minDistanceBetweenEdgesAndObstacles), building.height, currentBuildingNumber, obstaclesParent);
+        }
 
-        SpawnObstacles(new Vector2(nextBuildingPosition + 5, nextBuildingPosition + building.width - 5), building.height, currentBuildingNumber, obstaclesParent);
+        // Decide if we want an enemy on this building
+        if(Random.Range(0,3) == 0)
+        {
+            //Ins
+        }
 
         // Decide if we want a hole
         // If yes push the next building spawn position even more
         if (Random.Range(0, 2) == 0) // temp
-            nextBuildingPosition += Random.Range(holeSizeMinMax.x, holeSizeMinMax.y);
+            spawnPosition += Random.Range(holeSizeMinMax.x, holeSizeMinMax.y);
 
         // Pushing next building spawn position
-        nextBuildingPosition += building.width;
+        spawnPosition += building.width;
         currentBuildingNumber++;
     }
     private void SpawnObstacles(Vector2 xMinMax, float y, int buildingNumber, Transform parent)
