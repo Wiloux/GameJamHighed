@@ -1602,6 +1602,8 @@ MonoBehaviour:
   triggers:
   - {fileID: 7380231216524375663}
   - {fileID: 6480063961564604691}
+  - {fileID: 6308078197727447292}
+  - {fileID: 2265737057434734803}
 --- !u!1 &4178238377778829878
 GameObject:
   m_ObjectHideFlags: 0
