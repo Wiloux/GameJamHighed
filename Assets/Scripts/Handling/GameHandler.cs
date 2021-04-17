@@ -79,7 +79,7 @@ public class GameHandler : MonoBehaviour
         if(GUILayout.Button("Reset Highscore")) { PlayerPrefs.SetInt("Highscore", 0); }
         GUILayout.Space(2);
         GUILayout.BeginHorizontal();
-        if(GUILayout.Button("Set score")) { PlayerPrefs.SetInt("Highscore", newHighscore); }
+        if(GUILayout.Button("Set score")) { PlayerPrefs.SetInt("Highscore", newHighscore); Debug.Log("New best score: " + newHighscore); }
         newHighscore = EditorGUILayout.IntField(newHighscore);
         GUILayout.EndHorizontal();
     }
