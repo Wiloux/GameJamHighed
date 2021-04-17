@@ -12,6 +12,15 @@ public class Player : MonoBehaviour
     public bool isDead = false;
 
     public bool isInBuilding;
+    [Header("Score")]
+    [Space(10)]
+    public float score;
+    [Space(10)]
+    public int breakingWall_ScoreGain = 5;
+    public int smashingEnemy_ScoreGain = 10;
+    public int perfectTimingJump_ScoreGain = 7;
+    public float scoreGainBySecond = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +46,8 @@ public class Player : MonoBehaviour
             {
                 Die();
             }
+
+            score += Time.deltaTime * scoreGainBySecond;
         }
         else
         {

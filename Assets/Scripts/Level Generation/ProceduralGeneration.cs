@@ -112,7 +112,7 @@ public class ProceduralGeneration : MonoBehaviour
         building.name = "Building " + currentBuildingNumber.ToString() + "( " + buildingPrefab.name + " )";
 
         // Decide if we want obstacles on this building
-        if (Random.Range(0,3) != 0 && currentBuildingNumber != 1) 
+        if (Random.Range(0,2) == 0 && currentBuildingNumber != 1) 
         {
             // Spawn some obstacles on the building
             SpawnObstacles(new Vector2(spawnPosition + minDistanceBetweenEdgesAndObstacles, spawnPosition + building.width - minDistanceBetweenEdgesAndObstacles), building.height, currentBuildingNumber, obstaclesParent);

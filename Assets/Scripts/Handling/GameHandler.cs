@@ -11,6 +11,8 @@ public class GameHandler : MonoBehaviour
 
     float timer = 0;
 
+    public GameObject destructionParticles;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
