@@ -54,13 +54,25 @@ public class Building : MonoBehaviour
 
         for(int i = 0; i < floors.Length; i++)
         {
+            if (i == trigger.floorIndex) continue;
             Floor floor = floors[i];
-            if (floor == chosenFloor) continue;
+            Debug.Log(floor.obj.name + " | " + (floor.bg == null) + i.ToString() );
 
             if(floor.obj.GetComponentInChildren<Renderer>().material.color.a < 1)
             {
                 if (floor.bg != null) StartCoroutine(gameHandler.Fade(floor.bg, 0.1f, "out"));
                 StartCoroutine(gameHandler.Fade(floor.obj, 0.2f, "in"));
+            }
+            if (floor.bg != null)
+            {
+                Debug.Log(floor.bg.name);
+                Renderer[] bgRenderers = floor.bg.GetComponentsInChildren<Renderer>();
+                foreach (Renderer renderer in bgRenderers)
+                {
+                    Color color = renderer.material.color;
+                    color.a = 0;
+                    renderer.material.color = color;
+                }
             }
 
             floor.obj.GetComponent<Collider2D>().enabled = true;
