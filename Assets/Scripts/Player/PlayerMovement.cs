@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float diveForce;
 
     private Rigidbody2D rb;
-    private Animator anim;
+    public Animator anim;
     private Collider2D collider;
     public Player playerscript;
 
@@ -32,27 +32,31 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (anim != null) anim.SetFloat("VelocityY", rb.velocity.y);
-
-        if (Input.GetKey(KeyCode.C) && !IsGrounded()) { rb.gravityScale = diveForce; anim.SetBool("Diving", true); } else { rb.gravityScale = 4; anim.SetBool("Diving", false); }
-
-        Run();
-
-        bool isGrounded = IsGrounded();
-        if (IsGrounded()) groundedRememberTimer = GROUND_REMEMBER_DURATION;
-
-        if (Input.GetKeyDown(KeyCode.Space) && groundedRememberTimer > 0)
+        if (!playerscript.isDead)
         {
-            jumpPressedRememberTimer = JUMP_PRESS_REMEMBER_DURATION;
+            if (anim != null) anim.SetFloat("VelocityY", rb.velocity.y);
+
+            if (Input.GetKey(KeyCode.C) && !IsGrounded()) { rb.gravityScale = diveForce; anim.SetBool("Diving", true); } else { rb.gravityScale = 4; anim.SetBool("Diving", false); }
+
+            Run();
+
+            bool isGrounded = IsGrounded();
+            if (IsGrounded()) groundedRememberTimer = GROUND_REMEMBER_DURATION;
+
+            if (Input.GetKeyDown(KeyCode.Space) && groundedRememberTimer > 0)
+            {
+                jumpPressedRememberTimer = JUMP_PRESS_REMEMBER_DURATION;
+            }
+
+            if (groundedRememberTimer > 0 && jumpPressedRememberTimer > 0) Jump();
+
+
+            jumpPressedRememberTimer -= Time.deltaTime;
+            groundedRememberTimer -= Time.deltaTime;
+
+            if (anim != null) anim.SetBool("Airborn", !isGrounded);
         }
-
-        if (groundedRememberTimer > 0 && jumpPressedRememberTimer > 0) Jump();
-
-
-        jumpPressedRememberTimer -= Time.deltaTime;
-        groundedRememberTimer -= Time.deltaTime;
-
-        if (anim != null) anim.SetBool("Airborn", !isGrounded);
+     
     }
 
     private void Run()

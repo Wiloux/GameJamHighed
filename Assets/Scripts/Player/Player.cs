@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private new Collider2D collider;
     PlayerMovement controller;
+    public bool isDead = false;
 
     public bool isInBuilding;
 
@@ -24,15 +25,26 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !controller.isTackling && controller.IsGrounded())
+        if (!isDead)
         {
-            controller.isTackling = true;
-            animator.SetTrigger("Attack");
-        }
+            if (Input.GetMouseButtonDown(0) && !controller.isTackling && controller.IsGrounded())
+            {
+                controller.isTackling = true;
+                animator.SetTrigger("Attack");
+            }
 
-        if (transform.position.y < -1 || rb.velocity == Vector2.zero)
+            if (transform.position.y < -1 || rb.velocity == Vector2.zero)
+            {
+                Die();
+            }
+        }
+        else
         {
-            Die();
+
+            if (Input.anyKeyDown)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 
@@ -45,7 +57,9 @@ public class Player : MonoBehaviour
     public void Die()
     {
         // temp
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        controller.speed = 0;
+        isDead = true;
+        controller.anim.SetTrigger("Dead");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
