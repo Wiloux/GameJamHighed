@@ -58,11 +58,10 @@ public class EnemyScript : MonoBehaviour
                 if (direction.x > 0)
                 {
                     anim.SetTrigger("Wall");
-                }
-
-                if (direction.y < 0)
+                    rb.AddForce(new Vector2(-10, 5), ForceMode2D.Impulse);
+                } else if (direction.y < 0)
                 {
-                    anim.SetTrigger("Ground");
+                   anim.SetTrigger("Ground");
                 }
             }
         }
