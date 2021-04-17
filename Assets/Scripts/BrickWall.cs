@@ -8,6 +8,7 @@ public class BrickWall : MonoBehaviour
 
     void DestroyBuilding()
     {
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.Breaksfx, false);
         PlayerHelper.instance.AddWallDestructionScore();
         Instantiate(destroydebris, transform.position, Quaternion.Euler(new Vector3(0,0,180)));
         Destroy(gameObject);

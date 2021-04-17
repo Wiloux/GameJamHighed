@@ -23,6 +23,7 @@ public class FloorTrigger : MonoBehaviour
             if (building == null) Debug.LogError("There is no buildings in the parents");
             else { building.RegisterTrigger(this); }
 
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.Breaksfx, false);
             PlayerHelper.instance.AddWallDestructionScore();
             Instantiate(GameHandler.instance.destructionParticles, transform.position, Quaternion.Euler(new Vector3(0,0,180)));
 
