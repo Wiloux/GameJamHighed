@@ -53,7 +53,7 @@ public class ProceduralGeneration : MonoBehaviour
     {
         if(player.transform.position.x + 30 >= spawnPosition)
         {
-            if (player.isInBuilding) { SpawnBuilding(player.transform.position.y + 5f); }
+            if (player.isInBuilding) { SpawnBuilding(player.transform.position.y + 10f); }
             else SpawnBuilding();
         }
     }
