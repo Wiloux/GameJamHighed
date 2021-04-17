@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
     {
         // temp
         controller.speed = 0;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);
         isDead = true;
         controller.anim.SetTrigger("Dead");
     }
