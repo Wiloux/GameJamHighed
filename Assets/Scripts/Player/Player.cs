@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     public float scoreGainBySecond = 1;
 
 
+    public List<AudioClip> PunchEffects = new List<AudioClip>();
+    public List<AudioClip> DeathEffects = new List<AudioClip>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && !controller.isTackling && controller.IsGrounded())
             {
+                SoundManager.Instance.PlaySoundEffect(PunchEffects[Random.Range(0, PunchEffects.Count)]);
                 controller.isTackling = true;
                 animator.SetTrigger("Attack");
             }
@@ -70,6 +74,8 @@ public class Player : MonoBehaviour
     public void Die()
     {
         // temp
+        if(!isDead)
+        SoundManager.Instance.PlaySoundEffect(DeathEffects[Random.Range(0, DeathEffects.Count)]);
         controller.speed = 0;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);

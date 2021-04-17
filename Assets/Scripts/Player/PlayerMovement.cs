@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private new Collider2D collider;
     public Player playerscript;
 
+    public List<AudioClip> JumpEffects = new List<AudioClip>();
+
     private const float JUMP_PRESS_REMEMBER_DURATION = 0.3f;
     private float jumpPressedRememberTimer;
 
@@ -53,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && groundedRememberTimer > 0)
             {
                 jumpPressedRememberTimer = JUMP_PRESS_REMEMBER_DURATION;
+                SoundManager.Instance.PlaySoundEffect(JumpEffects[Random.Range(0, JumpEffects.Count)]);
             }
 
             if (groundedRememberTimer > 0 && jumpPressedRememberTimer > 0) Jump();
