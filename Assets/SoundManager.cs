@@ -9,13 +9,17 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager Instance;
 
+    public AudioClip Breaksfx;
+
     private void Awake()
     {
         Instance = this;
     }
-    public void PlaySoundEffect(AudioClip clip)
+    public void PlaySoundEffect(AudioClip clip, bool voiceline = true)
     {
-        sfxsd.pitch = Random.Range(0.9f, 1.1f);
-        sfxsd.PlayOneShot(clip);
+ sfxsd.pitch = Random.Range(0.9f, 1.1f);
+            sfxsd.PlayOneShot(clip);
+
+        
     }
 }
