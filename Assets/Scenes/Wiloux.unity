@@ -466,6 +466,7 @@ MonoBehaviour:
   obstacles:
   - {fileID: 8862388989759901726, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
   - {fileID: 5445872687751207654, guid: ca8756b676387b240b7451916ac77eea, type: 3}
+  - {fileID: 0}
   minimumDistanceBetweenObstacles: 20
 --- !u!114 &626959643
 MonoBehaviour:
@@ -881,6 +882,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4616563077077594853, guid: 0211404bc49c91f49ae442050f4cc06b, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616563077077594856, guid: 0211404bc49c91f49ae442050f4cc06b, type: 3}
+      propertyPath: isTackling
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4616563077077594857, guid: 0211404bc49c91f49ae442050f4cc06b, type: 3}
