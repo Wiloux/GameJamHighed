@@ -76,7 +76,7 @@ public class Building : MonoBehaviour
         {
             StartCoroutine(gameHandler.Fade(chosenFloor.obj, 0.2f, "in"));
             if (chosenFloor.bg != null) StartCoroutine(gameHandler.Fade(chosenFloor.bg, 0.5f, "out"));
-            chosenFloor.obj.GetComponent<Collider2D>().enabled = true;
+         //   chosenFloor.obj.GetComponent<Collider2D>().enabled = true;
         }
     }
 }
