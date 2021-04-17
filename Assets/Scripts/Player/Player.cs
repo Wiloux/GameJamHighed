@@ -30,10 +30,10 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Attack");
         }
 
-        if (transform.position.y < -1 || rb.velocity == Vector2.zero)
-        {
-            Die();
-        }
+        //if (transform.position.y < -1 || rb.velocity == Vector2.zero)
+        //{
+        //    Die();
+        //}
     }
 
 
@@ -46,11 +46,6 @@ public class Player : MonoBehaviour
     {
         // temp
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.GetContact(0).point.x > collider.bounds.center.x) { Die(); }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
