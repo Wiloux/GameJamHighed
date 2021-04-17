@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class ProceduralGeneration : MonoBehaviour
 {
+    [Header("Buildings prefabs")]
+    [Space(5)]
+    [SerializeField] Building[] buildings;
+    
+    [Space(10)]
     [SerializeField] Vector2 holeSizeMinMax;
 
-    [SerializeField] int nbOfBuilding;
-    [SerializeField] Building[] buildings;
-
+    [Header("Obstacles vars")]
+    [Space(30)]
     [SerializeField] GameObject[] obstacles;
     [SerializeField] float minimumDistanceBetweenObstacles;
     [SerializeField] float minDistanceBetweenEdgesAndObstacles = 5;
 
+    
+    [Header("Enemies vars")]
+    [Space(30)]
     [SerializeField] EnemyScript enemyPrefab;
+    [SerializeField] float distanceBetweenEdgeAndEnemy;
 
     float spawnPosition = 0;
     int currentBuildingNumber = 1;
 
     Transform buildingsParent;
     Transform obstaclesParent;
+    Transform enemiesParent;
 
     Player player;
 
@@ -27,13 +36,13 @@ public class ProceduralGeneration : MonoBehaviour
     {
         player = PlayerHelper.instance.GetComponent<Player>();
 
-        // making the hierarchy clear by creating a parent for every buildings
+        // making the hierarchy clear 
         buildingsParent = new GameObject("Buildings").transform;
         buildingsParent.SetParent(transform);
-
-        // making the hierarchy clear by creating a parent for every obstacles
         obstaclesParent = new GameObject("Obstacles").transform;
         obstaclesParent.SetParent(transform);
+        enemiesParent = new GameObject("Enemies").transform;
+        enemiesParent.SetParent(transform);
 
         SpawnBuilding();
 
@@ -72,7 +81,10 @@ public class ProceduralGeneration : MonoBehaviour
         // Decide if we want an enemy on this building
         if(Random.Range(0,3) == 0)
         {
-            //Ins
+            Instantiate(enemyPrefab,
+                new Vector2(spawnPosition + building.width - distanceBetweenEdgeAndEnemy, building.height),
+                Quaternion.identity,
+                enemiesParent);
         }
 
         // Decide if we want a hole
