@@ -41,11 +41,12 @@ public class EnemyScript : MonoBehaviour
             }
         }
         Vector3 direction = other.transform.position - transform.position;
-        if (Vector3.Dot(transform.forward, direction) > 0)
+        Debug.Log(direction);
+        if (Vector2.Dot(transform.forward, direction) > 0)
         {
             print("Back");
         }
-        if (Vector3.Dot(transform.forward, direction) == 0)
+        if (Vector2.Dot(transform.forward, direction) == 0)
         {
             print("Side");
         }
