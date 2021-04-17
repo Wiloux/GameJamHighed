@@ -4,30 +4,39 @@ using UnityEngine;
 
 public class BrickWall : MonoBehaviour
 {
-    [SerializeField] KeyCode input;
-    bool triggered;
 
+    
     [SerializeField] GameObject triggerIndicator;
+    public GameObject destroydebris;
 
     private void Start()
     {
         triggerIndicator.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+
+    void DestroyBuilding()
     {
-        if (other.CompareTag("Player"))
-        {
-            triggered = true;
-            triggerIndicator.SetActive(true);
-        }
+        Instantiate(destroydebris, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
-    private void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(triggered && Input.GetKeyDown(input))
+        if(collision.transform.tag == "Player")
         {
-            Destroy(gameObject);
+            Debug.Log("w");
+            if (collision.transform.GetComponent<PlayerMovement>().isTackling)
+            {
+                Debug.Log("t");
+                DestroyBuilding();
+            }
+            else
+            {
+                Debug.Log("f");
+                collision.transform.GetComponent<Player>().Die();
+            }
+            
         }
     }
 }
