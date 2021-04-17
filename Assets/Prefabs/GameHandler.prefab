@@ -73,3 +73,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
+  destructionParticles: {fileID: 598211417880175424, guid: eca82858647c5724ca27201818cddf6a, type: 3}

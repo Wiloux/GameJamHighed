@@ -41,6 +41,7 @@ public class EnemyScript : MonoBehaviour
                 if (player.isTackling)
                 {
                     rb.AddForce(new Vector2(Random.Range(50,65),40), ForceMode2D.Impulse);
+                    PlayerHelper.instance.AddSmashingEnemyScore();
                     Fall();
                 }
                 else
