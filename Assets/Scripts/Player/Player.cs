@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [Header("Score")]
     [Space(10)]
     public float score;
+    public bool beatingHighscore;
     [Space(10)]
     public int breakingWall_ScoreGain = 5;
     public int smashingEnemy_ScoreGain = 10;
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
             }
 
             score += Time.deltaTime * scoreGainBySecond;
+            if(!beatingHighscore && score > PlayerPrefs.GetInt("Highscore", 0)) { beatingHighscore = true; /*voiceline*/ }
         }
         else
         {
@@ -85,6 +87,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<FloorTrigger>() != null) { isInBuilding = !isInBuilding; Debug.Log("in building = " + isInBuilding); }
+        if(collision.GetComponent<FloorTrigger>() != null) { isInBuilding = !isInBuilding; /*Debug.Log("in building = " + isInBuilding);*/ }
     }
 }

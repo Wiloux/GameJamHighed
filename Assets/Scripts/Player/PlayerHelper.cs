@@ -18,4 +18,6 @@ public class PlayerHelper : MonoBehaviour
     public void AddPerfectJumpScore() { player.score += player.perfectTimingJump_ScoreGain; }
     public void AddSmashingEnemyScore() { player.score += player.smashingEnemy_ScoreGain; }
     public void AddWallDestructionScore() { player.score += player.breakingWall_ScoreGain; }
+
+    public bool IsBeatingHighscore() { return player.beatingHighscore; }
 }
