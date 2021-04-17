@@ -68,6 +68,17 @@ public class ProceduralGeneration : MonoBehaviour
         {
             if (maxHeight != null)
             {
+                while (true)
+                {
+                    bool buildingsHeightDifferenceNotTooHigh = Building.HeightDifference(buildingPrefab, createdBuildings[currentBuildingNumber - 2]) < maxDifferenceBetweenBuildings;
+                    bool isBelowMaxHeight = buildingPrefab.height < maxHeight;
+
+                    if (buildingPrefab.hasWindows && buildingsHeightDifferenceNotTooHigh) { break; }
+                    else if (!buildingPrefab.hasWindows && Mathf.Abs((float)maxHeight - buildingPrefab.height) < maxDifferenceBetweenBuildings) break;
+
+                    buildingPrefab = buildings[Random.Range(0, buildings.Length)];
+                }
+
                 for(int i = 0; i < buildings.Length; i++)
                 {
                     bool isBelowMaxHeight = buildings[i].height < buildingPrefab.height;
