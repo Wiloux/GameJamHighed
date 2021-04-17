@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private void Die()
+    public void Die()
     {
         // temp
         SceneManager.LoadScene(0);

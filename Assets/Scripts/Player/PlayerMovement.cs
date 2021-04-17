@@ -6,10 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
+    public bool isTackling;
 
     private Rigidbody2D rb;
     private Animator anim;
     private Collider2D collider;
+    public Player playerscript;
 
     private const float JUMP_PRESS_REMEMBER_DURATION = 0.2f;
     private float jumpPressedRememberTimer;
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
+        playerscript = GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -63,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         jumpPressedRememberTimer = 0;
         groundedRememberTimer = 0;
     }
+
 
     private bool IsGrounded()
     {
