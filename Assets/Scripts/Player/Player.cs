@@ -32,24 +32,35 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        attackCD = attackCDValue;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
         controller = GetComponent<PlayerMovement>();
     }
 
+    public float attackCDValue = 1;
+    float attackCD;
+
     // Update is called once per frame
     void Update()
     {
         if (!isDead)
         {
-            if (Input.GetKeyDown(KeyCode.X) && !controller.isTackling)
+            if (attackCD >= 0)
             {
-                SoundManager.Instance.PlaySoundEffect(PunchEffects[Random.Range(0, PunchEffects.Count)]);
-                controller.isTackling = true;
-                animator.SetTrigger("Attack");
+                attackCD -= Time.deltaTime;
             }
-
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.X) && !controller.isTackling)
+                {
+                    attackCD = attackCDValue;
+                    SoundManager.Instance.PlaySoundEffect(PunchEffects[Random.Range(0, PunchEffects.Count)]);
+                    controller.isTackling = true;
+                    animator.SetTrigger("Attack");
+                }
+            }
             if (transform.position.y < -1 || rb.velocity == Vector2.zero)
             {
                 Die();

@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!playerscript.isDead)
         {
-            anim.speed = speed / speedMinMax.y;
+            anim.speed = (speed / speedMinMax.y) *2;
             if (speed < speedMinMax.y) speed += speedGain * Time.deltaTime;
             if (speed > speedMinMax.y) speed = speedMinMax.y;
 
