@@ -167,3 +167,4 @@ MonoBehaviour:
   player: {fileID: 0}
   anim: {fileID: 0}
   isFalling: 0
+  punchEffect: {fileID: 8300000, guid: 5938d877d721d44438d96ca891718c8c, type: 3}

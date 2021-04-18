@@ -12,6 +12,22 @@ public class Player : MonoBehaviour
     public bool isDead = false;
 
     public bool isInBuilding;
+    [Header("Score")]
+    [Space(10)]
+    public float score;
+    public bool beatingHighscore;
+    [Space(10)]
+    public int breakingWall_ScoreGain = 5;
+    public int smashingEnemy_ScoreGain = 10;
+    public int perfectTimingJump_ScoreGain = 7;
+    public float scoreGainBySecond = 1;
+
+
+    public List<AudioClip> PunchEffects = new List<AudioClip>();
+    public List<AudioClip> DeathEffects = new List<AudioClip>();
+    public List<AudioClip> WalkGEffects = new List<AudioClip>();
+    public List<AudioClip> WalkWEffects = new List<AudioClip>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +43,9 @@ public class Player : MonoBehaviour
     {
         if (!isDead)
         {
-            if (Input.GetMouseButtonDown(0) && !controller.isTackling && controller.IsGrounded())
+            if (Input.GetMouseButtonDown(0) && !controller.isTackling)
             {
+                SoundManager.Instance.PlaySoundEffect(PunchEffects[Random.Range(0, PunchEffects.Count)]);
                 controller.isTackling = true;
                 animator.SetTrigger("Attack");
             }
@@ -37,18 +54,35 @@ public class Player : MonoBehaviour
             {
                 Die();
             }
+
+            score += Time.deltaTime * scoreGainBySecond;
+
         }
         else
         {
-
-            if (Input.anyKeyDown)
+            if (!beatingHighscore && score > PlayerPrefs.GetInt("Highscore", 0))
+            {
+                beatingHighscore = true; 
+            }
+                if (Input.anyKeyDown)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
 
-
+    public void WalkSFX()
+    {
+        if (isInBuilding)
+        {
+            SoundManager.Instance.PlaySoundEffect(WalkWEffects[Random.Range(0, WalkWEffects.Count)]);
+        }
+        else
+        {
+            SoundManager.Instance.PlaySoundEffect(WalkGEffects[Random.Range(0, WalkGEffects.Count)]);
+        }
+  
+    }
     public void StopAttack()
     {
         controller.isTackling = false;
@@ -57,15 +91,25 @@ public class Player : MonoBehaviour
     public void Die()
     {
         // temp
+
+
+        if (!isDead)
+        {
+            SoundManager.Instance.PlaySoundEffect(DeathEffects[Random.Range(0, DeathEffects.Count)]);
+            SoundManager.Instance.PlayUISoundEffect(SoundManager.Instance.GameOver);
+            SoundManager.Instance.PauseUnPauseMusic(true);
+        }
         controller.speed = 0;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);
         isDead = true;
         controller.anim.SetTrigger("Dead");
+
+        if(score > PlayerPrefs.GetInt("Highscore", 0)) { PlayerPrefs.SetInt("Hisghscore", (int)score); }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<FloorTrigger>() != null) { isInBuilding = !isInBuilding; Debug.Log("in building = " + isInBuilding); }
+        if(collision.GetComponent<FloorTrigger>() != null) { isInBuilding = !isInBuilding; /*Debug.Log("in building = " + isInBuilding);*/ }
     }
 }
