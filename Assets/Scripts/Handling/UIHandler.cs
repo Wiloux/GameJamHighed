@@ -101,8 +101,7 @@ public class UIHandler : MonoBehaviour
 
     public void StartGame()
     {
-        GameHandler.playing = true;
-        GameHandler.instance.SetPause(false);
+        GameHandler.instance.StartGame();
         mainMenu.SetActive(false);
         gameUI.SetActive(true);
         ChangeMode(Mode.playing);
