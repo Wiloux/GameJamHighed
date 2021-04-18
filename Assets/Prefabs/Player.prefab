@@ -269,8 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998b24e96722eff4d9386a98e409a27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMinMax: {x: 10, y: 20}
-  speedGain: 1.5
+  speedMinMax: {x: 20, y: 60}
+  speedGain: 0.25
   speed: 15
   jumpForce: 25
   isTackling: 0

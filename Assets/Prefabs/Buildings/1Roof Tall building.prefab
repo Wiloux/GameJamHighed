@@ -160,7 +160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
   width: 30.5
-  height: 42
+  height: 41.5
+  hasWindows: 0
   floors: []
   triggers: []
 --- !u!1 &1058391743014974842
