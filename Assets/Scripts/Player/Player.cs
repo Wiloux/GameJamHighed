@@ -105,7 +105,8 @@ public class Player : MonoBehaviour
         isDead = true;
         controller.anim.SetTrigger("Dead");
 
-        if(score > PlayerPrefs.GetInt("Highscore", 0)) { PlayerPrefs.SetInt("Hisghscore", (int)score); }
+        int currentHighscore = PlayerPrefs.GetInt("Highscore", 0);
+        if (score > currentHighscore) { PlayerPrefs.SetInt("OldHighscore", currentHighscore); PlayerPrefs.SetInt("Highscore", (int)score);  }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

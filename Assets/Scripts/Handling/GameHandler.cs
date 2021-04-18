@@ -27,6 +27,8 @@ public class GameHandler : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
+
+        Debug.Log(PlayerPrefs.GetInt("Highscore", 0));
     }
 
     public void SetPause(bool pause)

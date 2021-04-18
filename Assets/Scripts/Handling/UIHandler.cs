@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,23 +51,35 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            mode = Mode.gameOver;
-            gameOverMenu.SetActive(true);
-
-
-            if(currentPlayerScore < (int)playerHelper.Score)
+            if (!gameOverMenu.activeSelf)
             {
-                spd += 0.1f;
-                currentPlayerScore += 1 * spd * Time.deltaTime;
+                mode = Mode.gameOver;
+                gameOverMenu.SetActive(true);
+                if((int)playerHelper.Score == PlayerPrefs.GetInt("Highscore", 0))
+                {
+                    gameOverHighscoreDisplayer.text = PlayerPrefs.GetInt("OldHighscore", 0).ToString();
+                }
+                else { gameOverHighscoreDisplayer.text = PlayerPrefs.GetInt("Highscore", 0).ToString(); }
             }
-            gameOverScoreDisplayer.text = ((int)currentPlayerScore).ToString();
-            gameOverHighscoreDisplayer.text = PlayerPrefs.GetInt("Highscore", (int)playerHelper.Score).ToString();
-
-            if((int)currentPlayerScore == PlayerPrefs.GetInt("Highscore", (int)playerHelper.Score) && !vLineSaid)
+            else
             {
-                HighscoreAnim.SetTrigger("HS");
-                SoundManager.Instance.PlayUISoundEffect(NewHighscoreEffects[Random.Range(0, NewHighscoreEffects.Count)]);
-                vLineSaid = true;
+                if(currentPlayerScore < (int)playerHelper.Score)
+                {
+                    spd += 0.1f;
+                    currentPlayerScore += 1 * spd * Time.deltaTime;
+                }
+                if (currentPlayerScore > Convert.ToInt32(gameOverHighscoreDisplayer.text))
+                {
+                    gameOverHighscoreDisplayer.text = ((int)currentPlayerScore).ToString();
+                }
+                gameOverScoreDisplayer.text = ((int)currentPlayerScore).ToString();
+
+                if((int)currentPlayerScore == PlayerPrefs.GetInt("Highscore", (int)playerHelper.Score) && !vLineSaid)
+                {
+                    HighscoreAnim.SetTrigger("HS");
+                    SoundManager.Instance.PlayUISoundEffect(NewHighscoreEffects[UnityEngine.Random.Range(0, NewHighscoreEffects.Count)]);
+                    vLineSaid = true;
+                }
             }
         }
     }
