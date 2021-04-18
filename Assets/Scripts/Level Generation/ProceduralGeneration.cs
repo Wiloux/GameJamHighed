@@ -110,7 +110,7 @@ public class ProceduralGeneration : MonoBehaviour
             }
             else
             {
-                bool buildingNotTooHigh = (createdBuildings[currentBuildingNumber - 2].height - buildingPrefab.height) > maxDifferenceBetweenBuildings;
+                bool buildingNotTooHigh = (createdBuildings[currentBuildingNumber - 2].height - buildingPrefab.height) >= - maxDifferenceBetweenBuildings;
                 if (!buildingPrefab.hasWindows || buildingNotTooHigh)
                 {
                     while (true)
@@ -118,13 +118,13 @@ public class ProceduralGeneration : MonoBehaviour
                         Debug.Log("crash crash crash");
                         if (Input.GetKeyDown(KeyCode.A)) break;
                         buildingPrefab = buildings[Random.Range(0, buildings.Length)];
-                        buildingNotTooHigh = (createdBuildings[currentBuildingNumber - 2].height - buildingPrefab.height) > maxDifferenceBetweenBuildings;
+                        buildingNotTooHigh = (createdBuildings[currentBuildingNumber - 2].height - buildingPrefab.height) >= - maxDifferenceBetweenBuildings;
                         if (buildingNotTooHigh || buildingPrefab.hasWindows) { break; }
                     }
                 }
             }
+            Debug.Log("out of danger");
         }
-        Debug.Log("out of danger");
 
         Building building = Instantiate(buildingPrefab, new Vector2(spawnPosition, 0), Quaternion.identity, buildingsParent);
         building.name = "Building " + currentBuildingNumber.ToString() + "( " + buildingPrefab.name + " )";
