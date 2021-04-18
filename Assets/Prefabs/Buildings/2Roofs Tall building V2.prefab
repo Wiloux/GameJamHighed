@@ -1975,7 +1975,7 @@ GameObject:
   - component: {fileID: 5905421843102962981}
   - component: {fileID: 2354876676788601237}
   m_Layer: 0
-  m_Name: 2Roofs Tall building
+  m_Name: 2Roofs Tall building V2
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4055,7 +4055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862388989759901720, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.739998
+      value: 38.52
       objectReference: {fileID: 0}
     - target: {fileID: 8862388989759901720, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4117,7 +4117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5445872687751207648, guid: ca8756b676387b240b7451916ac77eea, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 38.37
+      value: 48.87
       objectReference: {fileID: 0}
     - target: {fileID: 5445872687751207648, guid: ca8756b676387b240b7451916ac77eea, type: 3}
       propertyPath: m_LocalPosition.z
