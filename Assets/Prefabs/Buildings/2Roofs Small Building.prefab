@@ -2180,7 +2180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
-  width: 43.3
+  width: 43.2
   height: 52
   hasWindows: 1
   floors:
@@ -3038,7 +3038,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 21.780367, y: 12.023645}
+  m_Offset: {x: 21.780367, y: 12.112178}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3049,7 +3049,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 43.2, y: 1.9016342}
+  m_Size: {x: 43.2, y: 2.078699}
   m_EdgeRadius: 0
 --- !u!1 &5180783479272914678
 GameObject:
