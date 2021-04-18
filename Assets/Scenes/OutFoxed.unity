@@ -1080,18 +1080,6 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 5.8500004
       objectReference: {fileID: 0}
-    - target: {fileID: 4616563077077594856, guid: 0211404bc49c91f49ae442050f4cc06b, type: 3}
-      propertyPath: speedGain
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4616563077077594856, guid: 0211404bc49c91f49ae442050f4cc06b, type: 3}
-      propertyPath: speedMinMax.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4616563077077594856, guid: 0211404bc49c91f49ae442050f4cc06b, type: 3}
-      propertyPath: speedMinMax.y
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 4616563077077594857, guid: 0211404bc49c91f49ae442050f4cc06b, type: 3}
       propertyPath: m_RootOrder
       value: 1
