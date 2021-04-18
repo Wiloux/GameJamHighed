@@ -37,7 +37,7 @@ public class UIHandler : MonoBehaviour
     {
         gameHandler = GameHandler.instance;
         playerHelper = PlayerHelper.instance;
-        mode = Mode.menu;
+        mode = GameHandler.playing ? Mode.playing : Mode.menu;
 
         mainMenu.SetActive(!GameHandler.playing);
         gameUI.SetActive(GameHandler.playing);
