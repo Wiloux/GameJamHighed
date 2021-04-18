@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2465801099054955751, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5905421843102962981, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -367,9 +371,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2Roofs Tall building
       objectReference: {fileID: 0}
+    - target: {fileID: 6008913522362071936, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6090299455254047511, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252351035578003760, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631229265290458350, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 8789598692844507721, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
       propertyPath: m_IsActive
