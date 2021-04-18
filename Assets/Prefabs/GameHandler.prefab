@@ -204,11 +204,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildings:
-  - {fileID: 1837459170411648657, guid: 734bd06a394dcb142af7fb28801241e5, type: 3}
-  - {fileID: 3069878731971572959, guid: 8fe18a6fd58f8174babe586b4fb09b0d, type: 3}
-  - {fileID: 2053682855354536635, guid: ce73ef926282aff439ae0cc7ee2a2138, type: 3}
-  - {fileID: 2354876676788601237, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
   - {fileID: 6808590961278610421, guid: b9ffae9892e7c2b4b95793f02bd7ee79, type: 3}
+  - {fileID: 1837459170411648657, guid: 734bd06a394dcb142af7fb28801241e5, type: 3}
+  - {fileID: 2053682855354536635, guid: ce73ef926282aff439ae0cc7ee2a2138, type: 3}
+  - {fileID: 3069878731971572959, guid: 8fe18a6fd58f8174babe586b4fb09b0d, type: 3}
+  - {fileID: 2354876676788601237, guid: 368e32c61922eab45b6d2c75ce09b8b2, type: 3}
+  - {fileID: 2354876676788601237, guid: fccce916da451704eb1c1ba112c9a98e, type: 3}
+  - {fileID: 2354876676788601237, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
+  - {fileID: 3069878731971572959, guid: 123cb68f5645027428fce1904e526935, type: 3}
+  - {fileID: 3069878731971572959, guid: c89d270603e7a4148818ad0b13d0ee98, type: 3}
+  - {fileID: 3069878731971572959, guid: daf63c9f631f4d94dabbd06b8898dc79, type: 3}
   distanceToSpawnNextBuilding: 25
   maxDifferenceBetweenBuildings: 20
   holeSizeMinMax: {x: 8, y: 12}
