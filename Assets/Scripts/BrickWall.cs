@@ -22,10 +22,6 @@ public class BrickWall : MonoBehaviour
             {
                 DestroyBuilding();
             }
-            else
-            {
-                collision.transform.GetComponent<Player>().Die();
-            }
             
         }
     }

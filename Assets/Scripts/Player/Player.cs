@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     {
         if (!isDead)
         {
-            if (Input.GetMouseButtonDown(0) && !controller.isTackling)
+            if (Input.GetKeyDown(KeyCode.X) && !controller.isTackling)
             {
                 SoundManager.Instance.PlaySoundEffect(PunchEffects[Random.Range(0, PunchEffects.Count)]);
                 controller.isTackling = true;

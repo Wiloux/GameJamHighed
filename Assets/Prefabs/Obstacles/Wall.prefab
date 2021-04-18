@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 858787089989633678}
   m_Layer: 0
   m_Name: GFx (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16b453f9c9e5024baa64245fd7d5b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerIndicator: {fileID: 0}
   destroydebris: {fileID: 598211417880175424, guid: eca82858647c5724ca27201818cddf6a, type: 3}
 --- !u!1 &5445872687751207654
 GameObject:
