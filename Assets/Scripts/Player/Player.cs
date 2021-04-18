@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 
     public List<AudioClip> PunchEffects = new List<AudioClip>();
     public List<AudioClip> DeathEffects = new List<AudioClip>();
+    public List<AudioClip> WalkGEffects = new List<AudioClip>();
+    public List<AudioClip> WalkWEffects = new List<AudioClip>();
 
 
     // Start is called before the first frame update
@@ -69,7 +71,18 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    public void WalkSFX()
+    {
+        if (isInBuilding)
+        {
+            SoundManager.Instance.PlaySoundEffect(WalkWEffects[Random.Range(0, WalkWEffects.Count)]);
+        }
+        else
+        {
+            SoundManager.Instance.PlaySoundEffect(WalkGEffects[Random.Range(0, WalkGEffects.Count)]);
+        }
+  
+    }
     public void StopAttack()
     {
         controller.isTackling = false;

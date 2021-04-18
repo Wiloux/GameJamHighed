@@ -308,6 +308,16 @@ MonoBehaviour:
   DeathEffects:
   - {fileID: 8300000, guid: 544e3d1b728040d47aec1d6b98c87a39, type: 3}
   - {fileID: 8300000, guid: 7969b7e17b8e7df459011a99a71cb960, type: 3}
+  WalkGEffects:
+  - {fileID: 8300000, guid: 352492fd20685b544a3501675e3dcb93, type: 3}
+  - {fileID: 8300000, guid: 9aff605b56b3c30498c3bb27307cd179, type: 3}
+  - {fileID: 8300000, guid: 352492fd20685b544a3501675e3dcb93, type: 3}
+  - {fileID: 8300000, guid: 0ba6e558b028f344e82e0b5838ef83f8, type: 3}
+  WalkWEffects:
+  - {fileID: 8300000, guid: a4a0b142237aa7c49accbaf34c2fb813, type: 3}
+  - {fileID: 8300000, guid: 042c3ac89b6da8944bf2924845da72c0, type: 3}
+  - {fileID: 8300000, guid: fe8ba67ab66f2804aa847270304728fd, type: 3}
+  - {fileID: 8300000, guid: 86ba71da3869a0547b9ff2a74b25cb9c, type: 3}
 --- !u!114 &4616563077077594856
 MonoBehaviour:
   m_ObjectHideFlags: 0
