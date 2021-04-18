@@ -95,7 +95,7 @@ public class Building : MonoBehaviour
         }
     }
 
-    public static float HeightDifference(Building a, Building b) { return Mathf.Abs(a.height - b.height); }
+    public static float AbsoluteHeightDifference(Building a, Building b) { return Mathf.Abs(a.height - b.height); }
 }
 [System.Serializable] public class Floor
 {

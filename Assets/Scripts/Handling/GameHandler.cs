@@ -18,6 +18,7 @@ public class GameHandler : MonoBehaviour
     private void Start()
     {
         SetPause(!playing);
+        if (playing) ProceduralGeneration.instance.StartGeneration();
     }
 
     private void Update()
@@ -28,9 +29,14 @@ public class GameHandler : MonoBehaviour
             {
                 TogglePause();
             }
-
-            Debug.Log(PlayerPrefs.GetInt("Highscore", 0));
         }
+    }
+
+    public void StartGame()
+    {
+        SetPause(false);
+        ProceduralGeneration.instance.StartGeneration();
+        playing = true;
     }
 
     public void SetPause(bool pause)

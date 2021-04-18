@@ -10,7 +10,11 @@ PrefabInstance:
     - target: {fileID: 3605570732837096769, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b9a2d84b36e5c064788070ec7e6b2f89, type: 3}
+      objectReference: {fileID: 21300000, guid: 5d8d260c34aae444eb25b473e787d1bc, type: 3}
+    - target: {fileID: 3605570732837096769, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8862388989759901720, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862388989759901726, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
       propertyPath: m_Name
-      value: Obstacle
+      value: Obstacle 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
