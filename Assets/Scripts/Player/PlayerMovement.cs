@@ -39,44 +39,47 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerscript.isDead)
+        if (GameHandler.playing)
         {
-            anim.speed = (speed / speedMinMax.y) *2;
-            if (speed < speedMinMax.y) speed += speedGain * Time.deltaTime;
-            if (speed > speedMinMax.y) speed = speedMinMax.y;
-
-            if (anim != null) anim.SetFloat("VelocityY", rb.velocity.y);
-
-         //   if (Input.GetKeyDown(KeyCode.C)) { SoundManager.Instance.PlaySoundEffect(diveEffect); }
-            if (Input.GetKey(KeyCode.C) && !IsGrounded() && !isTackling) { rb.gravityScale = diveForce; anim.SetBool("Diving", true); } else { rb.gravityScale = 4; anim.SetBool("Diving", false); }
-
-            Run();
-
-            bool isGrounded = IsGrounded();
-            if (IsGrounded()) groundedRememberTimer = GROUND_REMEMBER_DURATION;
-
-            if (Input.GetKeyDown(KeyCode.Space) && groundedRememberTimer > 0)
+            if (!playerscript.isDead)
             {
-                jumpPressedRememberTimer = JUMP_PRESS_REMEMBER_DURATION;
-                SoundManager.Instance.PlaySoundEffect(JumpEffects[Random.Range(0, JumpEffects.Count)]);
+                anim.speed = (speed / speedMinMax.y) *2;
+                if (speed < speedMinMax.y) speed += speedGain * Time.deltaTime;
+                if (speed > speedMinMax.y) speed = speedMinMax.y;
+
+                if (anim != null) anim.SetFloat("VelocityY", rb.velocity.y);
+
+             //   if (Input.GetKeyDown(KeyCode.C)) { SoundManager.Instance.PlaySoundEffect(diveEffect); }
+                if (Input.GetKey(KeyCode.C) && !IsGrounded() && !isTackling) { rb.gravityScale = diveForce; anim.SetBool("Diving", true); } else { rb.gravityScale = 4; anim.SetBool("Diving", false); }
+
+                Run();
+
+                bool isGrounded = IsGrounded();
+                if (IsGrounded()) groundedRememberTimer = GROUND_REMEMBER_DURATION;
+
+                if (Input.GetKeyDown(KeyCode.Space) && groundedRememberTimer > 0)
+                {
+                    jumpPressedRememberTimer = JUMP_PRESS_REMEMBER_DURATION;
+                    SoundManager.Instance.PlaySoundEffect(JumpEffects[Random.Range(0, JumpEffects.Count)]);
+                }
+
+                if (groundedRememberTimer > 0 && jumpPressedRememberTimer > 0) Jump();
+
+
+                jumpPressedRememberTimer -= Time.deltaTime;
+                groundedRememberTimer -= Time.deltaTime;
             }
 
-            if (groundedRememberTimer > 0 && jumpPressedRememberTimer > 0) Jump();
-
-
-            jumpPressedRememberTimer -= Time.deltaTime;
-            groundedRememberTimer -= Time.deltaTime;
+            if (playerscript.isDead)
+            {
+                rb.gravityScale = 4;
+            }
+            if(IsGrounded() && playerscript.isDead)
+            {
+                rb.drag = 5;
+            }
+            if (anim != null) anim.SetBool("Airborn", !IsGrounded());
         }
-
-        if (playerscript.isDead)
-        {
-            rb.gravityScale = 4;
-        }
-        if(IsGrounded() && playerscript.isDead)
-        {
-            rb.drag = 5;
-        }
-        if (anim != null) anim.SetBool("Airborn", !IsGrounded());
     }
 
     private void Run()

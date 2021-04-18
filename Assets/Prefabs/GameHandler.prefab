@@ -215,6 +215,7 @@ MonoBehaviour:
   obstacles:
   - {fileID: 8862388989759901726, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}
   - {fileID: 5445872687751207654, guid: ca8756b676387b240b7451916ac77eea, type: 3}
+  - {fileID: 3757525324090963028, guid: 739f271377f075d49bfc4ebd4abbf4b1, type: 3}
   minimumDistanceBetweenObstacles: 20
   minDistanceBetweenEdgesAndObstacles: 5
   enemyPrefab: {fileID: 493333339944517334, guid: 915ead1644e406243a6bcac4720d9c7a, type: 3}

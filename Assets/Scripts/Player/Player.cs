@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     public List<AudioClip> WalkGEffects = new List<AudioClip>();
     public List<AudioClip> WalkWEffects = new List<AudioClip>();
 
+    public float attackCDValue = 1;
+    float attackCD;
 
     // Start is called before the first frame update
     void Start()
@@ -39,46 +41,42 @@ public class Player : MonoBehaviour
         controller = GetComponent<PlayerMovement>();
     }
 
-    public float attackCDValue = 1;
-    float attackCD;
 
     // Update is called once per frame
     void Update()
     {
-        if (!isDead)
+        if (GameHandler.playing)
         {
-            if (attackCD >= 0)
+            if (!isDead)
             {
-                attackCD -= Time.deltaTime;
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.X) && !controller.isTackling)
+                if (attackCD >= 0) attackCD -= Time.deltaTime;
+                else if (Input.GetKeyDown(KeyCode.X) && !controller.isTackling)
                 {
-                    attackCD = attackCDValue;
                     SoundManager.Instance.PlaySoundEffect(PunchEffects[Random.Range(0, PunchEffects.Count)]);
                     controller.isTackling = true;
                     animator.SetTrigger("Attack");
+                    attackCD = attackCDValue;
+                }
+
+                if (transform.position.y < -1 || rb.velocity == Vector2.zero)
+                {
+                    Die();
+                }
+
+                score += Time.deltaTime * scoreGainBySecond;
+            }
+            else
+            {
+                if (!beatingHighscore && score > PlayerPrefs.GetInt("Highscore", 0))
+                {
+                    beatingHighscore = true; 
+                }
+                if (Input.anyKeyDown)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
             }
-            if (transform.position.y < -1 || rb.velocity == Vector2.zero)
-            {
-                Die();
-            }
 
-            score += Time.deltaTime * scoreGainBySecond;
-
-        }
-        else
-        {
-            if (!beatingHighscore && score > PlayerPrefs.GetInt("Highscore", 0))
-            {
-                beatingHighscore = true; 
-            }
-                if (Input.anyKeyDown)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
         }
     }
 

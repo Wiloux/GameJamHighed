@@ -26,6 +26,7 @@ public class FloorTrigger : MonoBehaviour
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.Breaksfx, false);
             PlayerHelper.instance.AddWallDestructionScore();
             Instantiate(GameHandler.instance.destructionParticles, transform.position, Quaternion.Euler(new Vector3(0,0,180)));
+            Debug.Log("destruction effect");
 
             gameObject.SetActive(false);
         }

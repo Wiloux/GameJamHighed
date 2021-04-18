@@ -10,25 +10,27 @@ public class GameHandler : MonoBehaviour
     public static GameHandler instance;
     private void Awake(){ instance = this; }
 
+    public static bool playing;
     public bool paused;
-
-    float timer = 0;
 
     public GameObject destructionParticles;
 
+    private void Start()
+    {
+        SetPause(!playing);
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (playing)
         {
-            TogglePause();
-        }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                TogglePause();
+            }
 
-        if (!paused)
-        {
-            timer += Time.deltaTime;
+            Debug.Log(PlayerPrefs.GetInt("Highscore", 0));
         }
-
-        Debug.Log(PlayerPrefs.GetInt("Highscore", 0));
     }
 
     public void SetPause(bool pause)

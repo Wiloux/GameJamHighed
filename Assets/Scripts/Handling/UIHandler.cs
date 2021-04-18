@@ -7,11 +7,13 @@ using TMPro;
 
 public class UIHandler : MonoBehaviour
 {
-    public enum Mode { playing, pause, options, gameOver};
+    public enum Mode { menu, playing, pause, options, gameOver};
     private Mode mode;
+    private Mode lastMode;
 
     [SerializeField] TMP_Text scoreDisplayer;
 
+    [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject gameUI;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject optionsMenu;
@@ -35,53 +37,75 @@ public class UIHandler : MonoBehaviour
     {
         gameHandler = GameHandler.instance;
         playerHelper = PlayerHelper.instance;
+        mode = Mode.menu;
+
+        mainMenu.SetActive(!GameHandler.playing);
+        gameUI.SetActive(GameHandler.playing);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!playerHelper.IsDead)
+        if(GameHandler.playing)
         {
-            scoreDisplayer.text = "Score: " + ((int)playerHelper.Score).ToString();
+            if (!playerHelper.IsDead)
+            {
+                scoreDisplayer.text = "Score: " + ((int)playerHelper.Score).ToString();
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Escape();
-            }
-        }
-        else
-        {
-            if (!gameOverMenu.activeSelf)
-            {
-                mode = Mode.gameOver;
-                gameOverMenu.SetActive(true);
-                if((int)playerHelper.Score == PlayerPrefs.GetInt("Highscore", 0))
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    gameOverHighscoreDisplayer.text = PlayerPrefs.GetInt("OldHighscore", 0).ToString();
+                    Escape();
                 }
-                else { gameOverHighscoreDisplayer.text = PlayerPrefs.GetInt("Highscore", 0).ToString(); }
             }
             else
             {
-                if(currentPlayerScore < (int)playerHelper.Score)
+                if (!gameOverMenu.activeSelf)
                 {
-                    spd += 0.1f;
-                    currentPlayerScore += 1 * spd * Time.deltaTime;
+                    mode = Mode.gameOver;
+                    gameOverMenu.SetActive(true);
+                    if((int)playerHelper.Score == PlayerPrefs.GetInt("Highscore", 0))
+                    {
+                        gameOverHighscoreDisplayer.text = PlayerPrefs.GetInt("OldHighscore", 0).ToString();
+                    }
+                    else { gameOverHighscoreDisplayer.text = PlayerPrefs.GetInt("Highscore", 0).ToString(); }
                 }
-                if (currentPlayerScore > Convert.ToInt32(gameOverHighscoreDisplayer.text))
+                else
                 {
-                    gameOverHighscoreDisplayer.text = ((int)currentPlayerScore).ToString();
-                }
-                gameOverScoreDisplayer.text = ((int)currentPlayerScore).ToString();
+                    if(currentPlayerScore < (int)playerHelper.Score)
+                    {
+                        spd += 0.1f;
+                        currentPlayerScore += 1 * spd * Time.deltaTime;
+                    }
+                    if (currentPlayerScore > Convert.ToInt32(gameOverHighscoreDisplayer.text))
+                    {
+                        gameOverHighscoreDisplayer.text = ((int)currentPlayerScore).ToString();
+                    }
+                    gameOverScoreDisplayer.text = ((int)currentPlayerScore).ToString();
 
-                if((int)currentPlayerScore == PlayerPrefs.GetInt("Highscore", (int)playerHelper.Score) && !vLineSaid)
-                {
-                    HighscoreAnim.SetTrigger("HS");
-                    SoundManager.Instance.PlayUISoundEffect(NewHighscoreEffects[UnityEngine.Random.Range(0, NewHighscoreEffects.Count)]);
-                    vLineSaid = true;
+                    if((int)currentPlayerScore == PlayerPrefs.GetInt("Highscore", (int)playerHelper.Score) && !vLineSaid)
+                    {
+                        HighscoreAnim.SetTrigger("HS");
+                        SoundManager.Instance.PlayUISoundEffect(NewHighscoreEffects[UnityEngine.Random.Range(0, NewHighscoreEffects.Count)]);
+                        vLineSaid = true;
+                    }
                 }
             }
         }
+    }
+
+    private void ChangeMode(Mode newMode)
+    {
+        lastMode = mode;
+        mode = newMode;
+    }
+
+    public void StartGame()
+    {
+        GameHandler.playing = true;
+        GameHandler.instance.SetPause(false);
+        mainMenu.SetActive(false);
+        gameUI.SetActive(true);
+        ChangeMode(Mode.playing);
     }
 
     public void Escape()
@@ -92,19 +116,20 @@ public class UIHandler : MonoBehaviour
                 SoundManager.Instance.PauseUnPauseMusic(true);
                 gameUI.SetActive(false);
                 pauseMenu.SetActive(true);
-                mode = Mode.pause;
+                ChangeMode(Mode.pause);
                 break;
             case Mode.pause:
                 SoundManager.Instance.PauseUnPauseMusic(false);
                 gameUI.SetActive(true);
                 pauseMenu.SetActive(false);
                 gameHandler.SetPause(false);
-                mode = Mode.playing;
+                ChangeMode(Mode.playing);
                 break;
             case Mode.options:
-                pauseMenu.SetActive(true);
                 optionsMenu.SetActive(false);
-                mode = Mode.pause;
+                if(lastMode == Mode.menu) { mainMenu.SetActive(true);}
+                else if(lastMode == Mode.pause) { pauseMenu.SetActive(true);}
+                ChangeMode(Mode.pause);
                 break;
         }
     }
@@ -113,7 +138,14 @@ public class UIHandler : MonoBehaviour
     {
         optionsMenu.SetActive(true);
         pauseMenu.SetActive(false);
-        mode = Mode.options;
+        ChangeMode(Mode.options);
+    }
+
+    public void OpenOptionsFromMainMenu()
+    {
+        optionsMenu.SetActive(true);
+        mainMenu.SetActive(false);
+        ChangeMode(Mode.options);
     }
 
     public void ExitGame()
