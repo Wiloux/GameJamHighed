@@ -19,10 +19,16 @@ public class UIHandler : MonoBehaviour
     [SerializeField] TMP_Text gameOverScoreDisplayer;
     [SerializeField] TMP_Text gameOverHighscoreDisplayer;
 
+    public List<AudioClip> NewHighscoreEffects = new List<AudioClip>();
 
     GameHandler gameHandler;
     PlayerHelper playerHelper;
 
+    float currentPlayerScore = 0;
+    bool vLineSaid;
+    float spd = 1;
+
+    public Animator HighscoreAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +52,22 @@ public class UIHandler : MonoBehaviour
         {
             mode = Mode.gameOver;
             gameOverMenu.SetActive(true);
-            gameOverScoreDisplayer.text = ((int)playerHelper.Score).ToString();
+
+
+            if(currentPlayerScore < (int)playerHelper.Score)
+            {
+                spd += 0.1f;
+                currentPlayerScore += 1 * spd * Time.deltaTime;
+            }
+            gameOverScoreDisplayer.text = ((int)currentPlayerScore).ToString();
             gameOverHighscoreDisplayer.text = PlayerPrefs.GetInt("Highscore", (int)playerHelper.Score).ToString();
+
+            if((int)currentPlayerScore == PlayerPrefs.GetInt("Highscore", (int)playerHelper.Score) && !vLineSaid)
+            {
+                HighscoreAnim.SetTrigger("HS");
+                SoundManager.Instance.PlayUISoundEffect(NewHighscoreEffects[Random.Range(0, NewHighscoreEffects.Count)]);
+                vLineSaid = true;
+            }
         }
     }
 
@@ -56,11 +76,13 @@ public class UIHandler : MonoBehaviour
         switch (mode)
         {
             case Mode.playing:
+                SoundManager.Instance.PauseUnPauseMusic(true);
                 gameUI.SetActive(false);
                 pauseMenu.SetActive(true);
                 mode = Mode.pause;
                 break;
             case Mode.pause:
+                SoundManager.Instance.PauseUnPauseMusic(false);
                 gameUI.SetActive(true);
                 pauseMenu.SetActive(false);
                 gameHandler.SetPause(false);

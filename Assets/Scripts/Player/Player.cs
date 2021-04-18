@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
     public List<AudioClip> PunchEffects = new List<AudioClip>();
     public List<AudioClip> DeathEffects = new List<AudioClip>();
-    public List<AudioClip> NewHighscoreEffects = new List<AudioClip>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -54,12 +54,15 @@ public class Player : MonoBehaviour
             }
 
             score += Time.deltaTime * scoreGainBySecond;
-            if(!beatingHighscore && score > PlayerPrefs.GetInt("Highscore", 0)) { beatingHighscore = true; SoundManager.Instance.PlaySoundEffect(NewHighscoreEffects[Random.Range(0, NewHighscoreEffects.Count)]); }
+
         }
         else
         {
-
-            if (Input.anyKeyDown)
+            if (!beatingHighscore && score > PlayerPrefs.GetInt("Highscore", 0))
+            {
+                beatingHighscore = true; 
+            }
+                if (Input.anyKeyDown)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
@@ -75,8 +78,14 @@ public class Player : MonoBehaviour
     public void Die()
     {
         // temp
-        if(!isDead)
-        SoundManager.Instance.PlaySoundEffect(DeathEffects[Random.Range(0, DeathEffects.Count)]);
+
+
+        if (!isDead)
+        {
+            SoundManager.Instance.PlaySoundEffect(DeathEffects[Random.Range(0, DeathEffects.Count)]);
+            SoundManager.Instance.PlayUISoundEffect(SoundManager.Instance.GameOver);
+            SoundManager.Instance.PauseUnPauseMusic(true);
+        }
         controller.speed = 0;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);
