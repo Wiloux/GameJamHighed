@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2501427794279108436}
   - component: {fileID: 3605570732837096769}
+  - component: {fileID: 7891374815758826387}
   m_Layer: 0
   m_Name: GFx
   m_TagString: Ground
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 783ad4d89f212c441afb234d2e98dab4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -82,6 +83,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7891374815758826387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754690395870180414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5192e1eda4824414b92844ddaec4b048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 5d8d260c34aae444eb25b473e787d1bc, type: 3}
+  - {fileID: 21300000, guid: f450dbec3cd684240a375ef23e451ca8, type: 3}
+  - {fileID: 21300000, guid: 58ff41d8b6c488e4082fd8287d6b0d84, type: 3}
+  - {fileID: 21300000, guid: 52bff21775307564e95e2188f7e56d79, type: 3}
 --- !u!1 &8862388989759901726
 GameObject:
   m_ObjectHideFlags: 0
