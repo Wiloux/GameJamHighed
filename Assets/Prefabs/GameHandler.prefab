@@ -210,7 +210,7 @@ MonoBehaviour:
   - {fileID: 2354876676788601237, guid: 59413d0e0e9d8f944bf4ecafb2e96d22, type: 3}
   - {fileID: 6808590961278610421, guid: b9ffae9892e7c2b4b95793f02bd7ee79, type: 3}
   distanceToSpawnNextBuilding: 25
-  maxDifferenceBetweenBuildings: 7
+  maxDifferenceBetweenBuildings: 20
   holeSizeMinMax: {x: 8, y: 12}
   obstacles:
   - {fileID: 8862388989759901726, guid: 9bd8a6d9b91ee76449e9b20b6a1ba86e, type: 3}

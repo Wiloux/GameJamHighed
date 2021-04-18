@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ProceduralGeneration : MonoBehaviour
 {
+    public static ProceduralGeneration instance;
+    private void Awake() { instance = this; }
+
     [Header("Buildings prefabs")]
     [Space(5)]
+    bool generationStarted = false;
     [SerializeField] Building[] buildings;
     float spawnPosition = 0;
     int currentBuildingNumber = 1;
@@ -38,6 +42,23 @@ public class ProceduralGeneration : MonoBehaviour
     private void Start()
     {
         player = PlayerHelper.instance.GetComponent<Player>();
+    }
+
+    private void Update()
+    {
+        if (generationStarted)
+        {
+            if(player.transform.position.x + distanceToSpawnNextBuilding >= spawnPosition)
+            {
+                if (player.isInBuilding) { SpawnBuilding(player.transform.position.y); Debug.Log("adapted spawn"); }
+                else SpawnBuilding();
+            }
+        }
+    }
+
+    public void StartGeneration()
+    {
+        generationStarted = true;
 
         // making the hierarchy clear 
         buildingsParent = new GameObject("Buildings").transform;
@@ -50,15 +71,6 @@ public class ProceduralGeneration : MonoBehaviour
         SpawnBuilding();
     }
 
-    private void Update()
-    {
-        if(player.transform.position.x + distanceToSpawnNextBuilding >= spawnPosition)
-        {
-            if (player.isInBuilding) { SpawnBuilding(player.transform.position.y); Debug.Log("adapted spawn"); }
-            else SpawnBuilding();
-        }
-    }
-
     private void SpawnBuilding(float? maxHeight = null)
     {
         Debug.Log("spawn");
@@ -66,11 +78,12 @@ public class ProceduralGeneration : MonoBehaviour
 
         if(currentBuildingNumber != 1)
         {
+            Debug.Log("going to danger");
             if (maxHeight != null)
             {
                 while (true)
                 {
-                    bool buildingsHeightDifferenceNotTooHigh = Building.HeightDifference(buildingPrefab, createdBuildings[currentBuildingNumber - 2]) < maxDifferenceBetweenBuildings;
+                    bool buildingsHeightDifferenceNotTooHigh = Building.AbsoluteHeightDifference(buildingPrefab, createdBuildings[currentBuildingNumber - 2]) < maxDifferenceBetweenBuildings;
                     bool isBelowMaxHeight = buildingPrefab.height < maxHeight;
 
                     if (buildingPrefab.hasWindows && buildingsHeightDifferenceNotTooHigh) { break; }
@@ -79,7 +92,7 @@ public class ProceduralGeneration : MonoBehaviour
                     buildingPrefab = buildings[Random.Range(0, buildings.Length)];
                 }
 
-                for(int i = 0; i < buildings.Length; i++)
+                for (int i = 0; i < buildings.Length; i++)
                 {
                     bool isBelowMaxHeight = buildings[i].height < buildingPrefab.height;
                     bool isCloserFromMaxHeight = Mathf.Abs(buildings[i].height - (float)maxHeight) < Mathf.Abs(buildingPrefab.height - (float)maxHeight);
@@ -97,16 +110,21 @@ public class ProceduralGeneration : MonoBehaviour
             }
             else
             {
-                if (!buildingPrefab.hasWindows || Building.HeightDifference(buildingPrefab, createdBuildings[currentBuildingNumber-2]) > maxDifferenceBetweenBuildings)
+                bool buildingNotTooHigh = (createdBuildings[currentBuildingNumber - 2].height - buildingPrefab.height) > maxDifferenceBetweenBuildings;
+                if (!buildingPrefab.hasWindows || buildingNotTooHigh)
                 {
                     while (true)
                     {
-                        buildingPrefab = buildings[Random.Range(0, buildings.Length)]; 
-                        if(Building.HeightDifference(buildingPrefab, createdBuildings[currentBuildingNumber - 2]) <= maxDifferenceBetweenBuildings || buildingPrefab.hasWindows) { break; }
+                        Debug.Log("crash crash crash");
+                        if (Input.GetKeyDown(KeyCode.A)) break;
+                        buildingPrefab = buildings[Random.Range(0, buildings.Length)];
+                        buildingNotTooHigh = (createdBuildings[currentBuildingNumber - 2].height - buildingPrefab.height) > maxDifferenceBetweenBuildings;
+                        if (buildingNotTooHigh || buildingPrefab.hasWindows) { break; }
                     }
                 }
             }
         }
+        Debug.Log("out of danger");
 
         Building building = Instantiate(buildingPrefab, new Vector2(spawnPosition, 0), Quaternion.identity, buildingsParent);
         building.name = "Building " + currentBuildingNumber.ToString() + "( " + buildingPrefab.name + " )";
