@@ -802,6 +802,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2736093188366215750, guid: c691f470d4733c148b3cc9f0c118b418, type: 3}
+      propertyPath: buildings.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736093188366215750, guid: c691f470d4733c148b3cc9f0c118b418, type: 3}
+      propertyPath: buildings.Array.data[5]
+      value: 
+      objectReference: {fileID: 3069878731971572959, guid: c89d270603e7a4148818ad0b13d0ee98, type: 3}
+    - target: {fileID: 2736093188366215750, guid: c691f470d4733c148b3cc9f0c118b418, type: 3}
+      propertyPath: buildings.Array.data[6]
+      value: 
+      objectReference: {fileID: 3069878731971572959, guid: c89d270603e7a4148818ad0b13d0ee98, type: 3}
     - target: {fileID: 2736093188366215755, guid: c691f470d4733c148b3cc9f0c118b418, type: 3}
       propertyPath: m_Name
       value: GameHandler
