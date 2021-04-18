@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
             if (!isDead)
             {
                 if (attackCD >= 0) attackCD -= Time.deltaTime;
-                else if (Input.GetKeyDown(KeyCode.X) && !controller.isTackling)
+                else if (Input.GetKeyDown(KeyCode.X) && !controller.isTackling || Input.GetKeyDown(KeyCode.RightArrow) && !controller.isTackling)
                 {
                     SoundManager.Instance.PlaySoundEffect(PunchEffects[Random.Range(0, PunchEffects.Count)]);
                     controller.isTackling = true;
