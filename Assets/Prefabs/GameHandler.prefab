@@ -248,7 +248,7 @@ MonoBehaviour:
   sfxsd: {fileID: 2597612772830684046}
   musicsd: {fileID: 2361502618363563344}
   UIsd: {fileID: 1576064509014617074}
-  music: {fileID: 8300000, guid: 0b1084c69a64f544cbd019f31c670432, type: 3}
+  GameOver: {fileID: 8300000, guid: 0b1084c69a64f544cbd019f31c670432, type: 3}
   Breaksfx: {fileID: 8300000, guid: d32c779632dbab449adc2186e95d915b, type: 3}
 --- !u!82 &2597612772830684046
 AudioSource:
