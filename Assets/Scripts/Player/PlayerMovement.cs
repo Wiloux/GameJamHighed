@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
             if (anim != null) anim.SetFloat("VelocityY", rb.velocity.y);
 
          //   if (Input.GetKeyDown(KeyCode.C)) { SoundManager.Instance.PlaySoundEffect(diveEffect); }
-            if (Input.GetKey(KeyCode.C) && !IsGrounded()) { rb.gravityScale = diveForce; anim.SetBool("Diving", true); } else { rb.gravityScale = 4; anim.SetBool("Diving", false); }
+            if (Input.GetKey(KeyCode.C) && !IsGrounded() && !isTackling) { rb.gravityScale = diveForce; anim.SetBool("Diving", true); } else { rb.gravityScale = 4; anim.SetBool("Diving", false); }
 
             Run();
 
